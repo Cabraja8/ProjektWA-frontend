@@ -1,10 +1,41 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
+    <header>
+      <div class="top-bar bg-gray">
+        <div class="col 12 text-right">
+          <p><a href="">/</a></p>
+        </div>
+      </div>
+
+      <nav id="nav" class="navbar bg-dark navbar-expand-lg">
+        <div class="container">
+          <router-link to="/" class="navbar-brand"
+            ><img src="./assets/app_logo-transparent.png" alt="Logo"
+          /></router-link>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <router-link to="/" class="nav-link">Home</router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link to="" class="nav-link">Log in</router-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
   </div>
 </template>
 
@@ -22,10 +53,10 @@ nav {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #ffffff;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #6a6969;
     }
   }
 }
