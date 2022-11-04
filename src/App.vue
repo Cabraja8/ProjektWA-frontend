@@ -24,20 +24,66 @@
 
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
+              <li class="navbar-brand">
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
 
-              <li class="nav-item">
-                <router-link to="" class="nav-link">Log in</router-link>
+              <li class="navbar-brand">
+                <router-link to="/Login" class="nav-link">Log in</router-link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    <router-view />
+    <footer>
+      <div class="container">
+        <div class="row text-light text-center py-4 justify-content-center">
+          <div class="col-sm-10 col-md-8-col-lg-6">
+            <img src="../src/assets/app_logo-transparent.png" alt="" />
+
+            <ul class="social pt-3">
+              <li>
+                <a href="https://www.facebook.com/" target="_blank"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/" target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://twitter.com/" target="_blank"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/" target="_blank"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </li>
+            </ul>
+            <br />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="socket text-light text-center">
+      <p>&copy; Project Manager 2023</p>
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+  data() {
+    return {};
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -53,10 +99,10 @@ nav {
 
   a {
     font-weight: bold;
-    color: #ffffff;
+    color: #665e5e;
 
     &.router-link-exact-active {
-      color: #6a6969;
+      color: #ffffff;
     }
   }
 }

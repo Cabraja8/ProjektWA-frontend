@@ -106,7 +106,7 @@ Extra
 }
 
 footer {
-  background-color: #ed4646;
+  background-color: #514d4c;
   padding: 1rem 2rem 3rem;
 }
 
@@ -133,12 +133,13 @@ ul.social li {
 }
 
 .socket {
-  background-color: #9d2e2e;
-  border-top: 1rem solid #ed4646;
+  background-color: #141212;
+  border-top: 1rem solid #514d4c;
 }
 
 #carousel {
   box-shadow: 0 0.1rem, 5rem rgba(0, 0, 0, 1);
+  border: #141212;
 }
 
 .carousel-inner {
@@ -153,12 +154,12 @@ ul.social li {
 }
 
 .bg-sh {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   border-radius: 1rem;
 }
 .bg-sh:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 1);
 }
 
 .formcon {
