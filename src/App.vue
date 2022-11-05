@@ -3,11 +3,11 @@
     <header>
       <div class="top-bar bg-gray">
         <div class="col 12 text-right">
-          <p><a href="">/</a></p>
+          <p><a href=""> Manage your projects easily!</a></p>
         </div>
       </div>
 
-      <nav id="nav" class="navbar bg-dark navbar-expand-lg">
+      <nav id="nav" class="navbar bg-darkbg navbar-expand-lg">
         <div class="container">
           <router-link to="/" class="navbar-brand"
             ><img src="./assets/app_logo-transparent.png" alt="Logo"
@@ -41,33 +41,33 @@
       <div class="container">
         <div class="row text-light text-center py-4 justify-content-center">
           <div class="col-sm-10 col-md-8-col-lg-6">
-            <img src="../src/assets/app_logo-transparent.png" alt="" />
+            <img src="../src/assets/app_logo-transparent.png" alt="" class="" />
 
-            <ul class="social pt-3">
-              <li>
-                <a href="https://www.facebook.com/" target="_blank"
-                  ><i class="fab fa-facebook"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/" target="_blank"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://twitter.com/" target="_blank"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/" target="_blank"
-                  ><i class="fab fa-youtube"></i
-                ></a>
-              </li>
-            </ul>
             <br />
           </div>
         </div>
+        <ul class="social pt-3">
+          <li>
+            <a href="https://www.facebook.com/" target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </li>
+        </ul>
       </div>
     </footer>
     <div class="socket text-light text-center">
@@ -91,7 +91,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
 }
 
 nav {
@@ -99,10 +99,10 @@ nav {
 
   a {
     font-weight: bold;
-    color: #665e5e;
+    color: #665e5e !important;
 
     &.router-link-exact-active {
-      color: #ffffff;
+      color: #ffffff !important;
     }
   }
 }

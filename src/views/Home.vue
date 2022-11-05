@@ -34,7 +34,7 @@
     <div class="container">
       <div class="row my-5">
         <div class="col-md-4 my-4">
-          <img src="" alt="" class="w-100" />
+          <img src="@/assets/registerlogo.png" alt="" class="w-50" />
           <h4 class="my-4">Join us today</h4>
           <p>Be part of your company</p>
           <router-link to="" class="btn btn-outline-secondary btn-md"
@@ -42,22 +42,19 @@
           >
         </div>
         <div class="col-md-4 my-4">
-          <img src="" alt="" class="w-100" />
-          <h4 class="my-4">Take Away</h4>
-          <p>/</p>
-          <router-link to="" class="btn btn-outline-secondary btn-md"
-            >Više informacija</router-link
-          >
-        </div>
-        <div class="col-md-4 my-4">
-          <img src="" alt="" class="w-100" />
+          <img src="@/assets/pmlogo.png" alt="" class="w-50" />
           <h4 class="my-4">What is Project Manager?</h4>
           <p>
             Project Manager is an Web Application who helps you create projects
             and manage them
           </p>
-          <router-link to="" class="btn btn-outline-secondary btn-md"
-            >Više informacija</router-link
+        </div>
+        <div class="col-md-4 my-4">
+          <img src="@/assets/jorneylogo.png" alt="" class="w-100" />
+          <h4 class="my-4">Continue your journey</h4>
+          <p>Develop now with Project Manager</p>
+          <router-link to="/Login" class="btn btn-outline-secondary btn-md"
+            >Log in</router-link
           >
         </div>
       </div>

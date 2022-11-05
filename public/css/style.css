@@ -49,6 +49,21 @@ Extra
   background: #514d4c;
 }
 
+.bg-darkbg {
+  background: #141212;
+}
+.bg-darker {
+  background: rgb(20, 18, 18);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 18, 18, 1) 32%,
+    rgba(81, 77, 76, 1) 68%
+  );
+}
+.text_white {
+  color: white;
+}
+
 .top-bar a {
   color: white;
   text-decoration: none;
@@ -71,10 +86,10 @@ Extra
 /* /* .nav-link {
   color: #5b5555 !important; */
 
-.nav-link.active,
+/* .nav-link.active,
 .nav-link:hover {
   color: #ffffff !important;
-}
+} */
 
 /*-- Fixed Background Image --*/
 .fixed-background {
@@ -167,10 +182,6 @@ ul.social li {
   justify-content: center;
   display: flex;
   position: relative;
-}
-
-.bg-reddanger {
-  background-color: #ed4646;
 }
 
 .shadowbox {
