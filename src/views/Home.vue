@@ -37,7 +37,7 @@
           <img src="@/assets/registerlogo.png" alt="" class="w-50" />
           <h4 class="my-4">Join us today</h4>
           <p>Be part of your company</p>
-          <router-link to="" class="btn btn-outline-secondary btn-md"
+          <router-link to="/Register" class="btn btn-outline-secondary btn-md"
             >Register</router-link
           >
         </div>

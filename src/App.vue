@@ -3,11 +3,14 @@
     <header>
       <div class="top-bar bg-gray">
         <div class="col 12 text-right">
-          <p><a href=""> Manage your projects easily!</a></p>
+          <p class="text_white">&copy; Project Manager 2023</p>
         </div>
       </div>
 
-      <nav id="nav" class="navbar bg-darkbg navbar-expand-lg">
+      <nav
+        id="nav"
+        class="navbar bg-darkbg navbar-expand-lg navbar navbar-dark"
+      >
         <div class="container">
           <router-link to="/" class="navbar-brand"
             ><img src="./assets/app_logo-transparent.png" alt="Logo"
@@ -70,9 +73,7 @@
         </ul>
       </div>
     </footer>
-    <div class="socket text-light text-center">
-      <p>&copy; Project Manager 2023</p>
-    </div>
+    <div class="socket text-light text-center"></div>
   </div>
 </template>
 

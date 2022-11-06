@@ -74,7 +74,7 @@ export default {
       RepeatPassword: "",
     };
   },
-  name: "Login",
+  name: "Register",
   components: {},
 };
 </script>

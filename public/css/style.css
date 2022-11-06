@@ -50,7 +50,7 @@ Extra
 }
 
 .bg-darkbg {
-  background: #141212;
+  background: #141212 !important;
 }
 .bg-darker {
   background: rgb(20, 18, 18);
@@ -207,4 +207,8 @@ ul.social li {
     rgba(20, 18, 18, 1) 32%,
     rgba(81, 77, 76, 1) 68%
   );
+}
+
+.menu {
+  background: #514d4c !important;
 }
