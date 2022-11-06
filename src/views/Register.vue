@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="register">
     <div class="container py-6 padding py-4 my-4">
       <div
         class="row wh-100 align items-center justify-content form-container formcon"
@@ -30,13 +30,23 @@
                 placeholder="Password"
               />
             </div>
+            <div class="mb-4 text_white">
+              <label for="password" class="form-label">Repeat Password:</label>
+              <input
+                type="password"
+                v-model="RepeatPassword"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+              />
+            </div>
             <div class="container">
               <label for="password" class="form-label text_white"
-                >Don't have an account?
+                >Already have an account?
                 <router-link
-                  to="/Register"
+                  to="/Login"
                   class="nav-link text-decoration-underline"
-                  >Register</router-link
+                  >Log in</router-link
                 >
               </label>
             </div>
@@ -44,7 +54,7 @@
               type="button "
               class="btn btn-success w-50 mx-auto my-4 button4"
             >
-              Log in
+              Register
             </button>
           </form>
         </div>
@@ -61,6 +71,7 @@ export default {
     return {
       Email: "",
       Password: "",
+      RepeatPassword: "",
     };
   },
   name: "Login",

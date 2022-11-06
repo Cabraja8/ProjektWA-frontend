@@ -37,7 +37,7 @@
       </nav>
     </header>
     <router-view />
-    <footer>
+    <footer class="bg-darkfooter">
       <div class="container">
         <div class="row text-light text-center py-4 justify-content-center">
           <div class="col-sm-10 col-md-8-col-lg-6">
@@ -78,7 +78,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: "app",
   data() {
     return {};
   },

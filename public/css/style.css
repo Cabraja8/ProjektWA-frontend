@@ -149,7 +149,7 @@ ul.social li {
 
 .socket {
   background-color: #141212;
-  border-top: 1rem solid #514d4c;
+  border-top: 1rem solid #141212;
 }
 
 #carousel {
@@ -198,4 +198,13 @@ ul.social li {
 
 .bg-op:hover {
   opacity: 1;
+}
+
+.bg-darkfooter {
+  background: rgb(20, 18, 18);
+  background: linear-gradient(
+    0deg,
+    rgba(20, 18, 18, 1) 32%,
+    rgba(81, 77, 76, 1) 68%
+  );
 }
