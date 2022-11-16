@@ -37,7 +37,7 @@
                 v-model="RepeatPassword"
                 class="form-control"
                 id="password"
-                placeholder="Password"
+                placeholder="Repeat Password"
               />
             </div>
             <div class="container">

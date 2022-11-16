@@ -9,7 +9,7 @@
 
       <nav
         id="nav"
-        class="navbar bg-darkbg navbar-expand-lg navbar navbar-dark"
+        class="navbar bg-darkbg navbar-expand-lg navbar navbar-dark py-3 p-5"
       >
         <div class="container">
           <router-link to="/" class="navbar-brand"
@@ -30,9 +30,16 @@
               <li class="navbar-brand">
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
-
               <li class="navbar-brand">
                 <router-link to="/Login" class="nav-link">Log in</router-link>
+              </li>
+              <li class="navbar-brand">
+                <router-link to="/Profile" class="nav-link"
+                  >Profile</router-link
+                >
+              </li>
+              <li class="navbar-brand">
+                <router-link to="/Groups" class="nav-link">Groups</router-link>
               </li>
             </ul>
           </div>
