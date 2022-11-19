@@ -52,7 +52,7 @@
             </div>
             <button
               type="button "
-              class="btn btn-success w-50 mx-auto my-4 button4"
+              class="btn btn-secondary w-50 mx-auto my-4 button4"
             >
               Register
             </button>
