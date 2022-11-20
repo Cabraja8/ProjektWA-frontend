@@ -51,6 +51,7 @@
       {{ card.id }}
       {{ card.url }}
       {{ card.email }}
+      {{ card.posted_at }}
     </li>
     <footer class="bg-darkfooter">
       <div class="container">
@@ -91,6 +92,7 @@
 
 <script>
 import store from "@/store.js";
+import { Service, Posts } from "@/services";
 
 export default {
   name: "app",
@@ -105,23 +107,19 @@ export default {
   mounted() {
     this.cards = [];
 
-    fetch("http://localhost:3000/posts")
-      .then((r) => {
-        return r.json();
-      })
-      .then((data) => {
-        console.log("podaci s backenda", data);
-        let data2 = data.map((element) => {
-          return {
-            id: element.id,
-            url: element.source,
-            email: element.createdBy,
-            title: element.title,
-            posted_at: Number(element.postedAt),
-          };
-        });
-        this.cards = data2;
+    Service.get("/posts").then((response) => {
+      let data = response.data;
+      console.log("podaci s backenda", data);
+      this.cards = data.map((element) => {
+        return {
+          id: element._id,
+          url: element.source,
+          email: element.createdBy,
+          title: element.title,
+          posted_at: Number(element.postedAt),
+        };
       });
+    });
   },
 };
 </script>
