@@ -28,33 +28,18 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="navbar-brand">
-                <span v-if="!auth.authenticated">
-                  <router-link to="/" class="nav-link">Home</router-link>
-                </span>
+                <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="navbar-brand">
-                <span v-if="!auth.authenticated">
-                  <router-link to="/Login" class="nav-link">Log in</router-link>
-                </span>
+                <router-link to="/Login" class="nav-link">Log in</router-link>
               </li>
               <li class="navbar-brand">
-                <span v-if="auth.authenticated">
-                  <router-link to="/Profile" class="nav-link"
-                    >Profile</router-link
-                  >
-                </span>
+                <router-link to="/Profile" class="nav-link"
+                  >Profile</router-link
+                >
               </li>
               <li class="navbar-brand">
-                <span v-if="auth.authenticated">
-                  <router-link to="/Groups" class="nav-link"
-                    >Groups</router-link
-                  >
-                </span>
-              </li>
-              <li class="navbar-brand">
-                <span v-if="auth.authenticated">
-                  <a @click="logout" class="nav-link" href>Logout </a>
-                </span>
+                <router-link to="/Groups" class="nav-link">Groups</router-link>
               </li>
             </ul>
           </div>
@@ -107,7 +92,7 @@
 
 <script>
 import store from "@/store.js";
-import { Service, Posts, Auth } from "@/services";
+import { Service, Posts } from "@/services";
 
 export default {
   name: "app",
@@ -115,16 +100,10 @@ export default {
     return {
       store,
       cards: [],
-      auth: Auth.state,
     };
   },
 
-  methods: {
-    logout() {
-      Auth.logout();
-      this.$router.go();
-    },
-  },
+  methods: {},
   mounted() {
     this.cards = [];
 
