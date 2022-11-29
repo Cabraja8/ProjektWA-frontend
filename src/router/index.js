@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import Groups from "../views/Groups.vue";
+import { Auth } from "@/services";
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,18 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const javneStranice = ["/Login", "/Register", "/"];
+  const loginPotreban = !javneStranice.includes(to.path);
+  const user = Auth.getUser();
+
+  if (loginPotreban && !user) {
+    next("/Login");
+    return;
+  }
+  next();
 });
 
 export default router;
