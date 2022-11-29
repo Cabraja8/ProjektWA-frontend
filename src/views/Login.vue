@@ -9,12 +9,12 @@
             <img src="../assets/app_logo-transparent.png" class="w-50" />
           </div>
 
-          <form>
+          <form @submit.prevent="login">
             <div class="mb-4 text_white">
               <label for="Email" class="form-label">E-mail:</label>
               <input
                 type="E-mail"
-                v-model="Email"
+                v-model="email"
                 class="form-control"
                 id="Email"
                 placeholder="Email"
@@ -24,7 +24,7 @@
               <label for="password" class="form-label">Password:</label>
               <input
                 type="password"
-                v-model="Password"
+                v-model="password"
                 class="form-control"
                 id="password"
                 placeholder="Password"
@@ -41,7 +41,7 @@
               </label>
             </div>
             <button
-              type="button "
+              type="submit"
               class="btn btn-secondary w-50 mx-auto my-4 button4"
             >
               Log in
@@ -55,15 +55,25 @@
 
 <script>
 // @ is an alias to /src
-
+import { Auth } from "@/services";
 export default {
   data() {
     return {
-      Email: "",
-      Password: "",
+      email: "",
+      password: "",
     };
   },
   name: "Login",
   components: {},
+  methods: {
+    async login() {
+      let success = await Auth.login(this.email, this.password);
+      console.log("rezultat prijave ", success);
+
+      if (success == true) {
+        this.$router.push({ name: "profile" });
+      }
+    },
+  },
 };
 </script>

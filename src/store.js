@@ -1,6 +1,4 @@
 export default {
-  authenticated: false,
-  userEmail: "test@gmail.com",
   newUrl: "",
   cards: [],
   searchTerm: "",
