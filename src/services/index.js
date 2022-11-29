@@ -14,17 +14,17 @@ let Service = axios.create({
 //   }
 //   return request;
 // });
-// Service.interceptors.response.use((response) => {
-//   return (
-//     response,
-//     (error) => {
-//       if (error.response.status == 401 && error.response.status == 403) {
-//         Auth.logout();
-//         $router.go();
-//       }
-//     }
-//   );
-// });
+Service.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status == 401 || error.response.status == 403) {
+      Auth.logout();
+      $router.go();
+    }
+  }
+);
 
 let Posts = {
   getAll() {
@@ -43,7 +43,15 @@ let Auth = {
 
     return true;
   },
-
+  async Register(email, password) {
+    let user = {
+      email: email,
+      password: password,
+    };
+    let result = await Service.post("/users", user);
+    console.log(result);
+    return result;
+  },
   logout() {
     localStorage.removeItem("user");
   },
@@ -51,7 +59,7 @@ let Auth = {
     return JSON.parse(localStorage.getItem("user"));
   },
   getToken() {
-    let user = Auth.getUser;
+    let user = Auth.getUser();
     if (user && user.token) {
       return user.token;
     } else {
@@ -60,7 +68,7 @@ let Auth = {
   },
   authenticated() {
     let user = Auth.getUser();
-    if (user) {
+    if (user && user.token) {
       return true;
     }
     return false;

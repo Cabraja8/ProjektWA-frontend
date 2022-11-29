@@ -55,7 +55,7 @@
 
 <script>
 // @ is an alias to /src
-import { Auth } from "@/services";
+import { Auth, Service } from "@/services";
 export default {
   data() {
     return {
@@ -70,8 +70,10 @@ export default {
       let success = await Auth.login(this.email, this.password);
       console.log("rezultat prijave ", success);
 
-      if (success == true) {
+      if (success && Auth.getToken()) {
         this.$router.push({ name: "profile" });
+      } else {
+        console.log("korisnik ne postoji!");
       }
     },
   },

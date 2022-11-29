@@ -9,7 +9,7 @@
             <img src="../assets/app_logo-transparent.png" class="w-50" />
           </div>
 
-          <form>
+          <form @submit.prevent="Register">
             <div class="mb-4 text_white">
               <label for="Email" class="form-label">E-mail:</label>
               <input
@@ -36,7 +36,7 @@
                 type="password"
                 v-model="RepeatPassword"
                 class="form-control"
-                id="password"
+                id="RepeatPassword"
                 placeholder="Repeat Password"
               />
             </div>
@@ -65,7 +65,7 @@
 
 <script>
 // @ is an alias to /src
-
+import { Auth } from "@/services";
 export default {
   data() {
     return {
@@ -73,6 +73,16 @@ export default {
       Password: "",
       RepeatPassword: "",
     };
+  },
+  methods: {
+    async Register() {
+      if (this.Password === this.RepeatPassword) {
+        await Auth.Register(this.Email, this.Password);
+        this.$router.push({ name: "Login" });
+      } else {
+        console.log("lozinke nisu iste");
+      }
+    },
   },
   name: "Register",
   components: {},
