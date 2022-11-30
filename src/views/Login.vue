@@ -69,11 +69,17 @@ export default {
     async login() {
       let success = await Auth.login(this.email, this.password);
       console.log("rezultat prijave ", success);
-
-      if (success && Auth.getToken()) {
-        this.$router.push({ name: "profile" });
+      if (this.email === "" || this.password === "") {
+        alert("Please make sure the input is not empty");
       } else {
-        console.log("korisnik ne postoji!");
+        if (success && Auth.getToken()) {
+          this.$router.push({ name: "profile" });
+        } else {
+          console.log("korisnik ne postoji!");
+          alert("User does not exist / password or email wrong");
+          this.email = "";
+          this.password = "";
+        }
       }
     },
   },

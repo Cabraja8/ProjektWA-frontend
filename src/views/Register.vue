@@ -76,11 +76,20 @@ export default {
   },
   methods: {
     async Register() {
-      if (this.Password === this.RepeatPassword) {
-        await Auth.Register(this.Email, this.Password);
-        this.$router.push({ name: "Login" });
+      if (
+        this.Password !== "" ||
+        this.RepeatPassword !== "" ||
+        this.Email !== ""
+      ) {
+        if (this.Password === this.RepeatPassword) {
+          alert("You've succesfully create your account");
+          await Auth.Register(this.Email, this.Password);
+          this.$router.push({ name: "Login" });
+        } else {
+          alert("Passwords do NOT match");
+        }
       } else {
-        console.log("lozinke nisu iste");
+        alert("Please make sure the input is not empty");
       }
     },
   },

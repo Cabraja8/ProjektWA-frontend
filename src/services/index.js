@@ -66,6 +66,7 @@ let Auth = {
       return false;
     }
   },
+
   authenticated() {
     let user = Auth.getUser();
     if (user && user.token) {
