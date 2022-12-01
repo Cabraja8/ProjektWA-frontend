@@ -11,13 +11,13 @@
 
           <form @submit.prevent="login">
             <div class="mb-4 text_white">
-              <label for="Email" class="form-label">E-mail:</label>
+              <label for="Email" class="form-label">Username:</label>
               <input
                 type="E-mail"
-                v-model="email"
+                v-model="username"
                 class="form-control"
                 id="Email"
-                placeholder="Email"
+                placeholder="Username"
               />
             </div>
             <div class="mb-4 text_white">
@@ -59,7 +59,7 @@ import { Auth, Service } from "@/services";
 export default {
   data() {
     return {
-      email: "",
+      username: "",
       password: "",
     };
   },
@@ -67,9 +67,9 @@ export default {
   components: {},
   methods: {
     async login() {
-      let success = await Auth.login(this.email, this.password);
+      let success = await Auth.login(this.username, this.password);
       console.log("rezultat prijave ", success);
-      if (this.email === "" || this.password === "") {
+      if (this.username === "" || this.password === "") {
         alert("Please make sure the input is not empty");
       } else {
         if (success && Auth.getToken()) {
@@ -77,7 +77,7 @@ export default {
         } else {
           console.log("korisnik ne postoji!");
           alert("User does not exist / password or email wrong");
-          this.email = "";
+          this.username = "";
           this.password = "";
         }
       }

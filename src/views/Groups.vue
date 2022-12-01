@@ -33,6 +33,34 @@
         </table>
       </div>
     </div>
+    <div class="container-fluid my-4 py-4 col">
+      <h2 class="h2">Create your own group</h2>
+      <div class="border-top border-secondary w-50 mx-auto my-3"></div>
+    </div>
+    <div class="container md-5 my-4 py-4">
+      <div class="table-responsive">
+        <table
+          class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
+        >
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Group Names</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 

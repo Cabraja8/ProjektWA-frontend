@@ -11,13 +11,13 @@
 
           <form @submit.prevent="Register">
             <div class="mb-4 text_white">
-              <label for="Email" class="form-label">E-mail:</label>
+              <label for="Email" class="form-label">Username::</label>
               <input
-                type="E-mail"
-                v-model="Email"
+                type="Username"
+                v-model="username"
                 class="form-control"
-                id="Email"
-                placeholder="Email"
+                id="username"
+                placeholder="Username"
               />
             </div>
             <div class="mb-4 text_white">
@@ -69,7 +69,7 @@ import { Auth } from "@/services";
 export default {
   data() {
     return {
-      Email: "",
+      username: "",
       Password: "",
       RepeatPassword: "",
     };
@@ -79,11 +79,11 @@ export default {
       if (
         this.Password !== "" ||
         this.RepeatPassword !== "" ||
-        this.Email !== ""
+        this.username !== ""
       ) {
         if (this.Password === this.RepeatPassword) {
-          alert("You've succesfully create your account");
-          await Auth.Register(this.Email, this.Password);
+          alert("You've succesfully created your account");
+          await Auth.Register(this.username, this.Password);
           this.$router.push({ name: "Login" });
         } else {
           alert("Passwords do NOT match");

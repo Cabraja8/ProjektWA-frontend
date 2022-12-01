@@ -33,9 +33,9 @@ let Posts = {
 };
 
 let Auth = {
-  async login(email, password) {
+  async login(username, password) {
     let response = await Service.post("/auth", {
-      email: email,
+      username: username,
       password: password,
     });
     let user = response.data;
@@ -43,9 +43,9 @@ let Auth = {
 
     return true;
   },
-  async Register(email, password) {
+  async Register(username, password) {
     let user = {
-      email: email,
+      username: username,
       password: password,
     };
     let result = await Service.post("/users", user);
