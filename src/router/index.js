@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Profile from "../views/Profile.vue";
 import Groups from "../views/Groups.vue";
+import DashBoard from "../views/Dashboard.vue";
 import { Auth } from "@/services";
 
 Vue.use(VueRouter);
@@ -34,6 +35,11 @@ const routes = [
     path: "/Groups",
     name: "groups",
     component: Groups,
+  },
+  {
+    path: "/DashBoard",
+    name: "DashBoard",
+    component: DashBoard,
   },
 ];
 

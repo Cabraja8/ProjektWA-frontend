@@ -12,10 +12,16 @@
         class="navbar bg-darkbg navbar-expand-lg navbar navbar-dark py-3 p-5"
       >
         <div class="container">
-          <router-link to="/" class="navbar-brand"
-            ><img src="./assets/app_logo-transparent.png" alt="Logo"
-          /></router-link>
-
+          <span v-if="!auth.authenticated">
+            <router-link to="/" class="navbar-brand"
+              ><img src="./assets/app_logo-transparent.png" alt="Logo"
+            /></router-link>
+          </span>
+          <span v-if="auth.authenticated">
+            <div class="navbar-brand">
+              <img src="./assets/app_logo-transparent.png" alt="Logo" />
+            </div>
+          </span>
           <button
             class="navbar-toggler"
             type="button"
@@ -27,35 +33,66 @@
 
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="navbar-brand">
-                <span v-if="!auth.authenticated">
+              <span v-if="!auth.authenticated">
+                <li class="navbar-brand">
                   <router-link to="/" class="nav-link">Home</router-link>
-                </span>
-              </li>
-              <li class="navbar-brand">
-                <span v-if="!auth.authenticated">
+                </li>
+              </span>
+              <span v-if="!auth.authenticated">
+                <li class="navbar-brand">
                   <router-link to="/Login" class="nav-link">Log in</router-link>
-                </span>
-              </li>
-              <li class="navbar-brand">
-                <span v-if="auth.authenticated">
-                  <router-link to="/Profile" class="nav-link"
-                    >Profile</router-link
-                  >
-                </span>
-              </li>
-              <li class="navbar-brand">
-                <span v-if="auth.authenticated">
+                </li>
+              </span>
+
+              <span v-if="auth.authenticated">
+                <li class="navbar-brand">
                   <router-link to="/Groups" class="nav-link"
                     >Groups</router-link
                   >
-                </span>
-              </li>
-              <li class="navbar-brand">
-                <span v-if="auth.authenticated">
-                  <a @click="logout" class="nav-link" href>Logout </a>
-                </span>
-              </li>
+                </li>
+              </span>
+              <span v-if="auth.authenticated">
+                <li class="navbar-brand">
+                  <router-link to="/DashBoard" class="nav-link"
+                    >Dashboard</router-link
+                  >
+                </li>
+              </span>
+
+              <span v-if="auth.authenticated">
+                <li class="navbar-brand">
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-darkbg btn-sm dropdown-toggle"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <a class="nav-link" href>
+                        <i class="fa-solid fa-gear fa-2xl"> </i
+                      ></a>
+                    </button>
+                    <div class="dropdown-menu">
+                      <div class="row">
+                        <span v-if="auth.authenticated">
+                          <li class="navbar-brand">
+                            <router-link to="/Profile" class="nav-link"
+                              >Profile</router-link
+                            >
+                          </li>
+                        </span>
+                        <div class="dropdown-divider"></div>
+                        <span v-if="auth.authenticated">
+                          <li class="navbar-brand">
+                            <a @click="logout" class="nav-link" href>Logout </a>
+                          </li>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </span>
             </ul>
           </div>
         </div>

@@ -233,3 +233,50 @@ ul.social li {
   height: 50px;
   margin-left: 10px;
 }
+
+.table-darkbg {
+  color: white !important;
+  background: rgb(20, 18, 18);
+  background: linear-gradient(
+    0deg,
+    rgba(20, 18, 18, 1) 10%,
+    rgba(81, 77, 76, 1) 50%,
+    rgba(20, 18, 18, 1) 90%
+  );
+}
+.btn-gray {
+  color: white !important;
+  background: #514d4c;
+  height: 50px;
+  margin-left: 10px;
+}
+.w-40 {
+  width: 40% !important;
+}
+.w-80 {
+  width: 80% !important;
+}
+.dropdown-menu {
+  background: #141212 !important;
+}
+
+.fa-gear:hover {
+  color: white;
+}
+.fa-search {
+  color: white;
+}
+
+input[type="group"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #141212 !important;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+input[type="group"]:focus {
+  border: 3px solid #514d4c !important;
+}
