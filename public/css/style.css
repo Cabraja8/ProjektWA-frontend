@@ -212,3 +212,24 @@ ul.social li {
 .menu {
   background: #514d4c !important;
 }
+
+.rightbtn {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.thead-darkbg {
+  background: #141212 !important;
+  color: white;
+}
+
+.table-responsive {
+  border: 5px solid;
+}
+
+.btn-bord {
+  border: 1px solid white !important;
+  height: 50px;
+  margin-left: 10px;
+}
