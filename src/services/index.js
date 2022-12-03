@@ -19,7 +19,7 @@ Service.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status == 401 || error.response.status == 403) {
+    if (error.response.status === 401 || error.response.status === 403) {
       Auth.logout();
       $router.go();
     }
@@ -29,6 +29,14 @@ Service.interceptors.response.use(
 let Posts = {
   getAll() {
     return this.baseURL;
+  },
+};
+
+let Groups = {
+  async CreateGroup(group) {
+    let response = await Service.post("/groups", group);
+    console.log(response);
+    return true;
   },
 };
 
@@ -82,4 +90,4 @@ let Auth = {
     },
   },
 };
-export { Posts, Service, Auth };
+export { Posts, Service, Auth, Groups };

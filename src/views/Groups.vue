@@ -25,17 +25,15 @@
           <thead class="thead-darkbg">
             <tr>
               <th scope="col">Group Names</th>
+              <th scope="col">Company</th>
+              <th scope="col">Join type</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
+            <tr v-for="group in GroupList" :key="group.groupname">
+              <th>{{ group.groupname }}</th>
+              <th>{{ group.companyname }}</th>
+              <th>{{ group.groupjoin }}</th>
             </tr>
           </tbody>
         </table>
@@ -112,6 +110,7 @@
                     placeholder="Group Name"
                     class="form-control"
                     id="search"
+                    v-model="groupname"
                   />
                 </div>
                 <div class="container py-4 col-lg-12 col-sm-6 col-md-6 w-50">
@@ -121,6 +120,7 @@
                     placeholder="Company name"
                     class="form-control"
                     id="search"
+                    v-model="companyname"
                   />
                 </div>
                 <div class="container py-4 col-lg-12 col-sm-6 col-md-6 w-50">
@@ -132,9 +132,13 @@
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault2"
-                        checked
+                        value="Invite Only"
+                        v-model="groupjoin"
                       />
-                      <label class="form-check-label" for="flexRadioDefault2">
+                      <label
+                        class="form-check-label d-flex"
+                        for="flexRadioDefault2"
+                      >
                         Invite Only
                       </label>
                     </div>
@@ -144,6 +148,8 @@
                         type="radio"
                         name="flexRadioDefault"
                         id="flexRadioDefault1"
+                        value="Free Join"
+                        v-model="groupjoin"
                       />
                       <label
                         class="form-check-label d-flex"
@@ -164,21 +170,67 @@
 </template>
 
 <script>
+import { Auth, Service, Groups } from "@/services";
 export default {
   name: "Groups",
   data() {
     return {
       clicked: false,
+
+      groupname: "",
+      companyname: "",
+      groupjoin: "",
+      GroupList: [],
     };
   },
+  mounted() {
+    this.GetGroups();
+  },
   methods: {
+    GetGroups() {
+      this.GroupList = [];
+      Service.get("/groups").then((response) => {
+        let data = response.data;
+        console.log("GETGROUPS", data);
+        this.GroupList = data.map((group) => {
+          return {
+            groupname: group.groupname,
+            companyname: group.companyname,
+            groupjoin: group.groupjoin,
+          };
+        });
+      });
+    },
+
     ClickCreate() {
       this.clicked = true;
     },
     CancelCreateGroup() {
       this.clicked = false;
     },
-    CreateGroup() {},
+    async CreateGroup() {
+      if (
+        this.groupname === "" ||
+        this.companyname === "" ||
+        this.groupjoin === ""
+      ) {
+        alert("Input fields cannot be empty");
+      } else {
+        let group = {
+          groupname: this.groupname,
+          companyname: this.companyname,
+          groupjoin: this.groupjoin,
+        };
+        try {
+          await Groups.CreateGroup(group);
+          setTimeout(() => {
+            this.$router.push({ name: "ControlPanel" });
+          }, 1000);
+        } catch (e) {
+          alert(e);
+        }
+      }
+    },
   },
 };
 </script>
