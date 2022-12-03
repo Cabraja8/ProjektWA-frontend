@@ -39,10 +39,12 @@ let Auth = {
       password: password,
     });
     let user = response.data;
+
     localStorage.setItem("user", JSON.stringify(user));
 
     return true;
   },
+
   async Register(username, password) {
     let user = {
       username: username,

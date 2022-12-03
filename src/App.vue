@@ -18,9 +18,9 @@
             /></router-link>
           </span>
           <span v-if="auth.authenticated">
-            <div class="navbar-brand">
-              <img src="./assets/app_logo-transparent.png" alt="Logo" />
-            </div>
+            <router-link to="/Groups" class="navbar-brand"
+              ><img src="./assets/app_logo-transparent.png" alt="Logo"
+            /></router-link>
           </span>
           <button
             class="navbar-toggler"
@@ -58,7 +58,13 @@
                   >
                 </li>
               </span>
-
+              <span v-if="auth.authenticated">
+                <li class="navbar-brand">
+                  <router-link to="/ControlPanel" class="nav-link"
+                    >Control Panel</router-link
+                  >
+                </li>
+              </span>
               <span v-if="auth.authenticated">
                 <li class="navbar-brand">
                   <div class="btn-group">

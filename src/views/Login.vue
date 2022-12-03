@@ -73,7 +73,7 @@ export default {
         alert("Please make sure the input is not empty");
       } else {
         if (success && Auth.getToken()) {
-          this.$router.push({ name: "profile" });
+          this.$router.push({ name: "groups" });
         } else {
           console.log("korisnik ne postoji!");
           alert("User does not exist / password or email wrong");

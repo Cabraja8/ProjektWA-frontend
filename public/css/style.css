@@ -83,13 +83,11 @@ Extra
 .nav-item {
   padding: 0.5rem;
 }
-/* /* .nav-link {
-  color: #5b5555 !important; */
 
-/* .nav-link.active,
+.nav-link.active,
 .nav-link:hover {
   color: #ffffff !important;
-} */
+}
 
 /*-- Fixed Background Image --*/
 .fixed-background {
@@ -279,4 +277,18 @@ input[type="group"] {
 }
 input[type="group"]:focus {
   border: 3px solid #514d4c !important;
+}
+
+.img-bord {
+  height: 300px;
+  width: 300px;
+}
+
+.table-hw {
+  height: 300px !important;
+  width: 18rem !important;
+}
+
+.bord {
+  border: 5px solid #141212;
 }
