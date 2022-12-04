@@ -5,7 +5,8 @@
         class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
       >
         <thead class="thead-darkbg">
-          <tr>
+          <tr v-if="user.username !== listgroups.username">
+            <th scope="col">Group Creator</th>
             <th scope="col">Group Name</th>
             <th scope="col">Company</th>
             <th scope="col">Join type</th>
@@ -13,7 +14,8 @@
           </tr>
         </thead>
         <tbody class="">
-          <tr>
+          <tr v-if="user.username !== listgroups.username">
+            <td>{{ listgroups.username }}</td>
             <td>{{ listgroups.groupname }}</td>
             <td>{{ listgroups.companyname }}</td>
             <td>{{ listgroups.groupjoin }}</td>
@@ -49,7 +51,9 @@ export default {
   name: "ListofGroups",
   props: ["listgroups"],
   data() {
-    return {};
+    return {
+      user: JSON.parse(localStorage.getItem("user")),
+    };
   },
   mounted() {},
   methods: {

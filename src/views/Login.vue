@@ -56,6 +56,7 @@
 <script>
 // @ is an alias to /src
 import { Auth, Service } from "@/services";
+import store from "@/store";
 export default {
   data() {
     return {
@@ -77,8 +78,10 @@ export default {
         } else {
           console.log("korisnik ne postoji!");
           alert("User does not exist / password or email wrong");
-          this.username = "";
-          this.password = "";
+          setTimeout(() => {
+            this.username = "";
+            this.password = "";
+          }, 1000);
         }
       }
     },

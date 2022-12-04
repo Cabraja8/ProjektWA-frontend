@@ -159,6 +159,7 @@
 <script>
 import { Auth, Service, Groups } from "@/services";
 import ListofGroups from "@/components/ListofGroups.vue";
+import store from "@/store";
 export default {
   components: { ListofGroups },
   name: "Groups",
@@ -178,12 +179,13 @@ export default {
   methods: {
     GetGroups() {
       this.GroupList = [];
+      let user = JSON.parse(localStorage.getItem("user"));
       Service.get("/groups").then((response) => {
         let data = response.data;
         console.log("GETGROUPS", data);
         this.GroupList = data.map((group) => {
           return {
-            id: group._id,
+            username: group.username,
             groupname: group.groupname,
             companyname: group.companyname,
             groupjoin: group.groupjoin,
@@ -206,7 +208,9 @@ export default {
       ) {
         alert("Input fields cannot be empty");
       } else {
+        let user = JSON.parse(localStorage.getItem("user"));
         let group = {
+          username: user.username,
           groupname: this.groupname,
           companyname: this.companyname,
           groupjoin: this.groupjoin,
