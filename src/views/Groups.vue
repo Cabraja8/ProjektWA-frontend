@@ -11,6 +11,7 @@
           placeholder="Search Groups"
           class="form-control w-40"
           id="search"
+          v-model="searchname"
         />
         <button type="button rightbtn " class="btn bg-darkbg">
           <i class="fa-solid fa-search"></i>
@@ -18,26 +19,12 @@
       </div>
     </div>
     <div class="container md-5 my-4 py-4 w-80">
-      <div class="table-responsive">
-        <table
-          class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
-        >
-          <thead class="thead-darkbg">
-            <tr>
-              <th scope="col">Group Names</th>
-              <th scope="col">Company</th>
-              <th scope="col">Join type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="group in GroupList" :key="group.groupname">
-              <th>{{ group.groupname }}</th>
-              <th>{{ group.companyname }}</th>
-              <th>{{ group.groupjoin }}</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <listofGroups
+        class="col"
+        v-for="list in GroupList"
+        :key="list.groupname"
+        :listgroups="list"
+      />
     </div>
     <div class="container-fluid my-4 py-4 col">
       <h2 class="h2">Create your own group</h2>
@@ -171,12 +158,14 @@
 
 <script>
 import { Auth, Service, Groups } from "@/services";
+import ListofGroups from "@/components/ListofGroups.vue";
 export default {
+  components: { ListofGroups },
   name: "Groups",
   data() {
     return {
       clicked: false,
-
+      searchname: "",
       groupname: "",
       companyname: "",
       groupjoin: "",
@@ -194,6 +183,7 @@ export default {
         console.log("GETGROUPS", data);
         this.GroupList = data.map((group) => {
           return {
+            id: group._id,
             groupname: group.groupname,
             companyname: group.companyname,
             groupjoin: group.groupjoin,
@@ -222,6 +212,7 @@ export default {
           groupjoin: this.groupjoin,
         };
         try {
+          await Groups.CreateGroupName(group);
           await Groups.CreateGroup(group);
           setTimeout(() => {
             this.$router.push({ name: "ControlPanel" });

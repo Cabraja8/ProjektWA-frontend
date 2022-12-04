@@ -19,7 +19,7 @@ Service.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401 || error.response.status === 403) {
+    if (error.response.status == 401 || error.response.status == 403) {
       Auth.logout();
       $router.go();
     }
@@ -35,6 +35,11 @@ let Posts = {
 let Groups = {
   async CreateGroup(group) {
     let response = await Service.post("/groups", group);
+    console.log(response);
+    return true;
+  },
+  async CreateGroupName(groupname) {
+    let response = await Service.post("/creategroup", groupname);
     console.log(response);
     return true;
   },
