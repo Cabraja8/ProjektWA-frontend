@@ -38,11 +38,6 @@ let Groups = {
     console.log(response);
     return true;
   },
-  async CreateGroupName(groupname) {
-    let response = await Service.post("/creategroup", groupname);
-    console.log(response);
-    return true;
-  },
 };
 
 let Auth = {

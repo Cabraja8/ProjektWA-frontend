@@ -1,22 +1,22 @@
 <template>
   <div class="ListofGroups">
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="user.username !== listgroups.username">
       <table
         class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
       >
         <thead class="thead-darkbg">
           <tr v-if="user.username !== listgroups.username">
-            <th scope="col">Group Creator</th>
             <th scope="col">Group Name</th>
+            <th scope="col">Group Creator</th>
             <th scope="col">Company</th>
             <th scope="col">Join type</th>
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody class="">
+        <tbody>
           <tr v-if="user.username !== listgroups.username">
-            <td>{{ listgroups.username }}</td>
             <td>{{ listgroups.groupname }}</td>
+            <td>{{ listgroups.username }}</td>
             <td>{{ listgroups.companyname }}</td>
             <td>{{ listgroups.groupjoin }}</td>
             <td v-if="listgroups.groupjoin === 'Free Join'">

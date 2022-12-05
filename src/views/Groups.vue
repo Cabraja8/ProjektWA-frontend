@@ -179,7 +179,7 @@ export default {
   methods: {
     GetGroups() {
       this.GroupList = [];
-      let user = JSON.parse(localStorage.getItem("user"));
+
       Service.get("/groups").then((response) => {
         let data = response.data;
         console.log("GETGROUPS", data);
@@ -216,7 +216,6 @@ export default {
           groupjoin: this.groupjoin,
         };
         try {
-          await Groups.CreateGroupName(group);
           await Groups.CreateGroup(group);
           setTimeout(() => {
             this.$router.push({ name: "ControlPanel" });

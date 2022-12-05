@@ -292,3 +292,6 @@ input[type="group"]:focus {
 .bord {
   border: 5px solid #141212;
 }
+.selectoption {
+  border: 5px solid #141212 !important;
+}
