@@ -12,13 +12,22 @@
               class="form-control selectoption"
               id="selectoption"
               v-model="Pick"
+              @click="GroupPanel"
             >
-              <option v-for="list in ListofGroups" :key="list.id">
+              <option v-for="list in ListofGroups" :key="list.groupname">
                 {{ list.groupname }}
               </option>
             </select>
           </div>
         </div>
+      </div>
+      <div class="container">
+        <GroupPanel
+          class="col"
+          v-for="listgroup in groups"
+          :key="listgroup.groupname"
+          :groupPanel="listgroup"
+        />
       </div>
     </div>
   </div>
@@ -26,34 +35,61 @@
 
 <script>
 import { Service, Groups } from "@/services";
+import GroupPanel from "@/components/GroupPanel.vue";
 export default {
+  components: {
+    GroupPanel,
+  },
   name: "ControlPanel",
   data() {
     return {
+      groups: [],
       Pick: "",
       ListofGroups: [],
       user: JSON.parse(localStorage.getItem("user")),
     };
   },
   methods: {
-    // GetGroups() {
-    //   this.ListofGroups = [];
-    //   Service.get("/groups").then((response) => {
-    //     let data = response.data;
-    //     console.log("GETGROUPS", data);
-    //     this.ListofGroups = data.map((group) => {
-    //       return {
-    //         username: group.username,
-    //         groupname: group.groupname,
-    //         companyname: group.companyname,
-    //         groupjoin: group.groupjoin,
-    //       };
-    //     });
-    //   });
-    // },
+    async GetGroups() {
+      this.ListofGroups = [];
+      let user = JSON.parse(localStorage.getItem("user"));
+      await Service.get("/group", { params: user }).then((response) => {
+        let data = response.data;
+        console.log("GETGROUP", data);
+
+        this.ListofGroups = data.map((group) => {
+          return {
+            username: group.username,
+            groupname: group.groupname,
+            companyname: group.companyname,
+            groupjoin: group.groupjoin,
+          };
+        });
+      });
+    },
+    async GroupPanel() {
+      this.groups = [];
+      let pickoption = this.Pick;
+
+      await Service.get("/groupoption", { params: { pickoption } }).then(
+        (response) => {
+          let data = response.data;
+          console.log("GETGROUPPANEL", data);
+
+          this.groups = data.map((group) => {
+            return {
+              username: group.username,
+              groupname: group.groupname,
+              companyname: group.companyname,
+              groupjoin: group.groupjoin,
+            };
+          });
+        }
+      );
+    },
   },
   mounted() {
-    // this.GetGroups();
+    this.GetGroups();
   },
 };
 </script>

@@ -294,4 +294,6 @@ input[type="group"]:focus {
 }
 .selectoption {
   border: 5px solid #141212 !important;
+  font-size: 25px !important;
+  font-weight: bold !important;
 }

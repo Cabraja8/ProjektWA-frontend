@@ -177,10 +177,10 @@ export default {
     this.GetGroups();
   },
   methods: {
-    GetGroups() {
+    async GetGroups() {
       this.GroupList = [];
 
-      Service.get("/groups").then((response) => {
+      await Service.get("/groups").then((response) => {
         let data = response.data;
         console.log("GETGROUPS", data);
         this.GroupList = data.map((group) => {

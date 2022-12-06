@@ -15,7 +15,7 @@
             <div
               class="py-4 col-lg-6 col-md-6 col-sm-3 bord justify-content-between"
             >
-              <p>USERNAME</p>
+              <p>{{ user.username }}</p>
               <p>Your main company</p>
               <p>Lists of groups</p>
             </div>
@@ -32,7 +32,7 @@ export default {
   name: "profile",
   data() {
     return {
-      user: "",
+      user: JSON.parse(localStorage.getItem("user")),
     };
   },
 };
