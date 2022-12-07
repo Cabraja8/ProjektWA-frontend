@@ -75,9 +75,9 @@ export default {
         (response) => {
           let data = response.data;
           console.log("GETGROUPPANEL", data);
-
           this.groups = data.map((group) => {
             return {
+              id: group._id,
               username: group.username,
               groupname: group.groupname,
               companyname: group.companyname,

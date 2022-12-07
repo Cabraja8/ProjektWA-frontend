@@ -179,8 +179,8 @@ export default {
   methods: {
     async GetGroups() {
       this.GroupList = [];
-
-      await Service.get("/groups").then((response) => {
+      let user = JSON.parse(localStorage.getItem("user"));
+      await Service.get("/groups", { params: { user } }).then((response) => {
         let data = response.data;
         console.log("GETGROUPS", data);
         this.GroupList = data.map((group) => {
