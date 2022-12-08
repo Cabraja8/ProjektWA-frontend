@@ -38,6 +38,32 @@ let Groups = {
     console.log(response);
     return true;
   },
+  async GetGroups(user) {
+    let response = await Service.get("/groups", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        username: group.username,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+      };
+    });
+    return data;
+  },
+  async GetGroup(user) {
+    let response = await Service.get("/group", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        username: group.username,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+      };
+    });
+    return data;
+  },
 };
 
 let Auth = {

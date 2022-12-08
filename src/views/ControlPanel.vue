@@ -14,7 +14,7 @@
               v-model="Pick"
               @click="GroupPanel"
             >
-              <option v-for="list in ListofGroups" :key="list.groupname">
+              <option v-for="list in GroupList" :key="list.groupname">
                 {{ list.groupname }}
               </option>
             </select>
@@ -45,28 +45,18 @@ export default {
     return {
       groups: [],
       Pick: "",
-      ListofGroups: [],
+      GroupList: [],
       user: JSON.parse(localStorage.getItem("user")),
     };
   },
   methods: {
-    async GetGroups() {
-      this.ListofGroups = [];
+    async GetGroup() {
+      this.GroupList = [];
       let user = JSON.parse(localStorage.getItem("user"));
-      await Service.get("/group", { params: user }).then((response) => {
-        let data = response.data;
-        console.log("GETGROUP", data);
 
-        this.ListofGroups = data.map((group) => {
-          return {
-            username: group.username,
-            groupname: group.groupname,
-            companyname: group.companyname,
-            groupjoin: group.groupjoin,
-          };
-        });
-      });
+      this.GroupList = await Groups.GetGroup({ params: { user } });
     },
+
     async GroupPanel() {
       this.groups = [];
       let pickoption = this.Pick;
@@ -89,7 +79,7 @@ export default {
     },
   },
   mounted() {
-    this.GetGroups();
+    this.GetGroup();
   },
 };
 </script>

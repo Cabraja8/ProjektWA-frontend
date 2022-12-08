@@ -180,18 +180,8 @@ export default {
     async GetGroups() {
       this.GroupList = [];
       let user = JSON.parse(localStorage.getItem("user"));
-      await Service.get("/groups", { params: { user } }).then((response) => {
-        let data = response.data;
-        console.log("GETGROUPS", data);
-        this.GroupList = data.map((group) => {
-          return {
-            username: group.username,
-            groupname: group.groupname,
-            companyname: group.companyname,
-            groupjoin: group.groupjoin,
-          };
-        });
-      });
+
+      this.GroupList = await Groups.GetGroups({ params: { user } });
     },
 
     ClickCreate() {
