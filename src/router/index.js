@@ -7,6 +7,7 @@ import Profile from "../views/Profile.vue";
 import Groups from "../views/Groups.vue";
 import DashBoard from "../views/Dashboard.vue";
 import ControlPanel from "../views/ControlPanel.vue";
+import GroupPanel from "../components/GroupPanel.vue";
 import { Auth } from "@/services";
 
 Vue.use(VueRouter);

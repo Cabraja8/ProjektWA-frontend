@@ -1,34 +1,30 @@
 <template>
   <div class="GroupPanel">
-    <table class="table">
-      <thead class="table-light">
-        <tr>
-          <th scope="col">{{ groupPanel.groupname }}</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="container">
+      <div class="container mt-5 my-4 py-4 my-4 w-80">
+        <div class="table-responsive">
+          <table
+            class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
+          >
+            <thead class="thead-darkbg">
+              {{
+                groupPanel.username
+              }}
+            </thead>
+            <tbody>
+              <tr>
+                <th class="cent">Click on the Create Group button</th>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -61,21 +61,7 @@ export default {
       this.groups = [];
       let pickoption = this.Pick;
 
-      await Service.get("/groupoption", { params: { pickoption } }).then(
-        (response) => {
-          let data = response.data;
-          console.log("GETGROUPPANEL", data);
-          this.groups = data.map((group) => {
-            return {
-              id: group._id,
-              username: group.username,
-              groupname: group.groupname,
-              companyname: group.companyname,
-              groupjoin: group.groupjoin,
-            };
-          });
-        }
-      );
+      this.groups = await Groups.GroupOption({ params: { pickoption } });
     },
   },
   mounted() {

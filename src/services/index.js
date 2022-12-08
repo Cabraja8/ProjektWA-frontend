@@ -64,6 +64,22 @@ let Groups = {
     });
     return data;
   },
+  async GroupOption(pick) {
+    let response = await Service.get("/groupOption/${pick}", pick);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        username: group.username,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
 };
 
 let Auth = {

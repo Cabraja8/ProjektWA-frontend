@@ -91,7 +91,7 @@
                         <div class="dropdown-divider"></div>
                         <span v-if="auth.authenticated">
                           <li class="navbar-brand">
-                            <a @click="logout" class="nav-link" href>Logout </a>
+                            <a @click="logout" class="nav-link" href>Logout</a>
                           </li>
                         </span>
                       </div>
@@ -105,12 +105,7 @@
       </nav>
     </header>
     <router-view />
-    <li v-for="card in cards" :key="card.id">
-      {{ card.id }}
-      {{ card.url }}
-      {{ card.email }}
-      {{ card.posted_at }}
-    </li>
+
     <footer class="bg-darkfooter">
       <div class="container">
         <div class="row text-light text-center py-4 justify-content-center">
@@ -157,7 +152,7 @@ export default {
   data() {
     return {
       store,
-      cards: [],
+
       auth: Auth.state,
     };
   },
@@ -168,23 +163,7 @@ export default {
       this.$router.go();
     },
   },
-  mounted() {
-    this.cards = [];
-
-    Service.get("/posts").then((response) => {
-      let data = response.data;
-      console.log("podaci s backenda", data);
-      this.cards = data.map((element) => {
-        return {
-          id: element._id,
-          url: element.source,
-          email: element.createdBy,
-          title: element.title,
-          posted_at: Number(element.postedAt),
-        };
-      });
-    });
-  },
+  mounted: {},
 };
 </script>
 

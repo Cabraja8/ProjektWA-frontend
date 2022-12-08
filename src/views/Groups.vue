@@ -68,24 +68,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-if="!clicked">
-              <th scope="row">
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <p>Click on the Create Group button</p>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-              </th>
+            <tr v-if="!clicked" class="tr-height">
+              <th class="cent">Click on the Create Group button</th>
             </tr>
 
             <tr v-if="clicked">

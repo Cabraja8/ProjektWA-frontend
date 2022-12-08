@@ -233,13 +233,25 @@ ul.social li {
 }
 
 .table-darkbg {
-  color: white !important;
-  background: rgb(20, 18, 18);
+  color: black !important;
+  background: rgb(199, 199, 199);
   background: linear-gradient(
     0deg,
-    rgba(20, 18, 18, 1) 10%,
-    rgba(81, 77, 76, 1) 50%,
-    rgba(20, 18, 18, 1) 90%
+    rgba(199, 199, 199, 1) 2%,
+    rgba(119, 119, 119, 1) 10%,
+    rgba(119, 119, 119, 0.5329482134650736) 90%,
+    rgba(199, 199, 199, 1) 98%
+  );
+}
+.table-darkbg:hover {
+  color: black !important;
+  background: rgb(199, 199, 199);
+  background: linear-gradient(
+    0deg,
+    rgba(199, 199, 199, 1) 2%,
+    rgba(82, 79, 79, 1) 10%,
+    rgba(82, 79, 79, 0.5329482134650736) 90%,
+    rgba(199, 199, 199, 1) 98%
   );
 }
 .btn-gray {
@@ -296,4 +308,13 @@ input[type="group"]:focus {
   border: 5px solid #141212 !important;
   font-size: 25px !important;
   font-weight: bold !important;
+}
+
+.tr-height {
+  height: 400px !important;
+}
+
+.cent {
+  text-align: center !important;
+  vertical-align: middle !important;
 }
