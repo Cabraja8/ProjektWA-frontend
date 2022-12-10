@@ -145,14 +145,13 @@
 
 <script>
 import store from "@/store.js";
-import { Service, Posts, Auth } from "@/services";
+import { Service, Auth } from "@/services";
 
 export default {
   name: "app",
   data() {
     return {
       store,
-
       auth: Auth.state,
     };
   },
@@ -163,7 +162,7 @@ export default {
       this.$router.go();
     },
   },
-  mounted: {},
+  mounted() {},
 };
 </script>
 

@@ -8,6 +8,11 @@ import Groups from "../views/Groups.vue";
 import DashBoard from "../views/Dashboard.vue";
 import ControlPanel from "../views/ControlPanel.vue";
 import GroupPanel from "../components/GroupPanel.vue";
+import Users from "../views/Users.vue";
+import Tasks from "../views/Tasks.vue";
+import Project from "../views/Project.vue";
+import Inbox from "../views/Inbox.vue";
+import Settings from "../views/Settings.vue";
 import { Auth } from "@/services";
 
 Vue.use(VueRouter);
@@ -47,6 +52,33 @@ const routes = [
     path: "/ControlPanel",
     name: "ControlPanel",
     component: ControlPanel,
+    children: [
+      {
+        path: "Project",
+        name: "Project",
+        component: Project,
+      },
+      {
+        path: "Tasks",
+        name: "Tasks",
+        component: Tasks,
+      },
+      {
+        path: "Users",
+        name: "Users",
+        component: Users,
+      },
+      {
+        path: "Inbox",
+        name: "Inbox",
+        component: Inbox,
+      },
+      {
+        path: "Settings",
+        name: "Settings",
+        component: Settings,
+      },
+    ],
   },
 ];
 

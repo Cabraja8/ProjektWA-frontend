@@ -16,7 +16,7 @@
         <tbody>
           <tr>
             <td>{{ listgroups.groupname }}</td>
-            <td>{{ listgroups.username }}</td>
+            <td>{{ listgroups.admin }}</td>
             <td>{{ listgroups.companyname }}</td>
             <td>{{ listgroups.groupjoin }}</td>
             <td v-if="listgroups.groupjoin === 'Free Join'">

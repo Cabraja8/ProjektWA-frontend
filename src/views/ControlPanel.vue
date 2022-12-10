@@ -5,7 +5,7 @@
         <h2 class="h2">Select your group</h2>
         <div class="border-top border-secondary w-50 mx-auto my-3"></div>
       </div>
-      <div class="container">
+      <div class="container" v-if="GroupList.length > 0">
         <div class="row">
           <div class="col-lg-6 py-4 my-4 mx-auto md-4">
             <select
@@ -21,6 +21,35 @@
           </div>
         </div>
       </div>
+      <div
+        class="container"
+        v-if="GroupList.length === 0 && groups.length === 0"
+      >
+        <div class="container">
+          <div class="container mt-5 my-4 py-4 my-4 w-80">
+            <div class="container">
+              <div class="table-responsive">
+                <table
+                  class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
+                >
+                  <thead class="thead-darkbg">
+                    <br />
+                    <br />
+                  </thead>
+                  <tbody>
+                    <tr class="tr-cent">
+                      <th colspan="4" class="cent">
+                        You don't have any groups, create them
+                        <router-link to="/Groups">here</router-link>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <GroupPanel
           class="col"
@@ -28,6 +57,29 @@
           :key="listgroup.groupname"
           :groupPanel="listgroup"
         />
+      </div>
+      <div class="container" v-if="this.Pick === ''">
+        <div class="container mt-5 my-4 py-4 my-4 w-80">
+          <div class="container">
+            <div class="table-responsive">
+              <table
+                class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
+              >
+                <thead class="thead-darkbg">
+                  <br />
+                  <br />
+                </thead>
+                <tbody>
+                  <tr class="tr-cent">
+                    <th colspan="4" class="cent">
+                      You have to select a group in the options menu
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

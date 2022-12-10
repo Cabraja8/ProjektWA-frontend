@@ -7,18 +7,53 @@
             class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
           >
             <thead class="thead-darkbg">
-              {{
-                groupPanel.username
-              }}
+              <nav class="navbar navbar-expand-lg">
+                <ul class="navbar-nav mx-auto list-inline">
+                  <th scope="col">
+                    <li class="nav-item">
+                      <router-link to="/ControlPanel/Project" class="nav-link"
+                        >Project</router-link
+                      >
+                    </li>
+                  </th>
+                  <th scope="col">
+                    <li class="nav-item">
+                      <router-link to="/ControlPanel/Tasks" class="nav-link"
+                        >Tasks</router-link
+                      >
+                    </li>
+                  </th>
+                  <th scope="col">
+                    <li class="nav-item">
+                      <router-link to="/ControlPanel/Users" class="nav-link"
+                        >Users</router-link
+                      >
+                    </li>
+                  </th>
+                  <th scope="col">
+                    <li class="nav-item">
+                      <router-link to="/ControlPanel/Inbox" class="nav-link"
+                        >Inbox</router-link
+                      >
+                    </li>
+                  </th>
+                  <th scope="col">
+                    <li class="nav-item">
+                      <router-link to="/ControlPanel/Settings" class="nav-link"
+                        >Settings</router-link
+                      >
+                    </li>
+                  </th>
+                </ul>
+              </nav>
+              <!-- <th scope="col">{{ groupPanel.username }}</th>
+              <th scope="col">{{ groupPanel.groupname }}</th> -->
             </thead>
             <tbody>
-              <tr>
-                <th class="cent">Click on the Create Group button</th>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+              <tr class="tr-bigcent">
+                <th colspan="4" class="cent">
+                  <router-view> </router-view>
+                </th>
               </tr>
             </tbody>
           </table>

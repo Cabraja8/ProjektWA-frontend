@@ -39,11 +39,12 @@ let Groups = {
     return true;
   },
   async GetGroups(user) {
+    //funkcija iz Groups dohvaca $ne
     let response = await Service.get("/groups", user);
     let data = response.data;
     data = data.map((group) => {
       return {
-        username: group.username,
+        admin: group.admin,
         groupname: group.groupname,
         companyname: group.companyname,
         groupjoin: group.groupjoin,
@@ -52,11 +53,12 @@ let Groups = {
     return data;
   },
   async GetGroup(user) {
+    // funkcija iz Control Panela dohvaca sve kreirane grupe
     let response = await Service.get("/group", user);
     let data = response.data;
     data = data.map((group) => {
       return {
-        username: group.username,
+        admin: group.admin,
         groupname: group.groupname,
         companyname: group.companyname,
         groupjoin: group.groupjoin,

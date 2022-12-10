@@ -18,6 +18,22 @@
         </button>
       </div>
     </div>
+    <div v-if="GroupList.length === 0" class="container md-5 my-4 py-4 w-80">
+      <div class="table-responsive">
+        <table
+          class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
+        >
+          <thead class="thead-darkbg">
+            <br />
+          </thead>
+          <tbody>
+            <tr class="tr-cent">
+              <th colspan="4" class="cent">There are currently no Groups</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="container md-5 my-4 py-4 w-80">
       <listofGroups
         class="col"
@@ -33,7 +49,7 @@
     <div class="container mt-5 my-4 py-4 my-4 w-80">
       <div class="table-responsive">
         <table
-          class="table m-0 pd-4 py-4 md-4 mx-auto table-darkbg shadowbox mx-auto"
+          class="table m-0 pd-4 py-4 md-4 mx-auto table table-hover shadowbox mx-auto"
         >
           <thead class="thead-darkbg">
             <tr>
@@ -184,7 +200,7 @@ export default {
       } else {
         let user = JSON.parse(localStorage.getItem("user"));
         let group = {
-          username: user.username,
+          admin: user.username,
           groupname: this.groupname,
           companyname: this.companyname,
           groupjoin: this.groupjoin,

@@ -318,3 +318,14 @@ input[type="group"]:focus {
   text-align: center !important;
   vertical-align: middle !important;
 }
+
+.tr-bigcent {
+  height: 800px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+.tr-cent {
+  height: 200px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
