@@ -10,6 +10,7 @@
             <th scope="col">Group Creator</th>
             <th scope="col">Company</th>
             <th scope="col">Join type</th>
+            <th scope="col">users</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -19,15 +20,17 @@
             <td>{{ listgroups.admin }}</td>
             <td>{{ listgroups.companyname }}</td>
             <td>{{ listgroups.groupjoin }}</td>
+            <td>{{ listgroups.users }}</td>
             <td v-if="listgroups.groupjoin === 'Free Join'">
               <button
-                @click="JoinGroup(listgroups.groupname)"
+                @click="JoinGroups(listgroups.groupname)"
                 type="button rightbtn "
                 class="btn btn-sm btn-success"
               >
                 <i class="fa-regular fa-right-to-bracket"></i> Join Group
               </button>
             </td>
+
             <td v-if="listgroups.groupjoin === 'Invite Only'">
               <button
                 @click="AskToJoinGroup(listgroups.groupname)"
@@ -45,20 +48,32 @@
 </template>
 
 <script>
-import Groups from "@/views/Groups.vue";
-
+import { Groups, Service } from "@/services";
 export default {
   name: "ListofGroups",
   props: ["listgroups"],
   data() {
     return {
       user: JSON.parse(localStorage.getItem("user")),
+      currentUsers: this.listgroups.users,
     };
   },
   mounted() {},
   methods: {
-    JoinGroup(groupname) {
-      console.log(groupname);
+    async JoinGroups(groupname) {
+      let user = JSON.parse(localStorage.getItem("user"));
+
+      try {
+        await Groups.JoinGroup({
+          groupname: groupname,
+          username: user.username,
+        });
+        setTimeout(() => {
+          this.$router.push({ name: "DashBoard" });
+        }, 1000);
+      } catch (e) {
+        console.log(e);
+      }
     },
     AskToJoinGroup(groupname) {
       console.log(groupname);

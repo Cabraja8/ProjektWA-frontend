@@ -26,28 +26,26 @@ Service.interceptors.response.use(
   }
 );
 
-let Posts = {
-  getAll() {
-    return this.baseURL;
-  },
-};
-
 let Groups = {
   async CreateGroup(group) {
     let response = await Service.post("/groups", group);
     console.log(response);
     return true;
   },
-  async GetGroups(user) {
+  async GetGroups(user,currentUsers) {
     //funkcija iz Groups dohvaca $ne
-    let response = await Service.get("/groups", user);
+   
+    let response = await Service.get("/groups", user, currentUsers);
     let data = response.data;
     data = data.map((group) => {
       return {
+        id: group._id,
         admin: group.admin,
         groupname: group.groupname,
         companyname: group.companyname,
         groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
       };
     });
     return data;
@@ -58,10 +56,13 @@ let Groups = {
     let data = response.data;
     data = data.map((group) => {
       return {
+        id: group._id,
         admin: group.admin,
         groupname: group.groupname,
         companyname: group.companyname,
         groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
       };
     });
     return data;
@@ -81,6 +82,11 @@ let Groups = {
       };
     });
     return data;
+  },
+  async JoinGroup(group) {
+    let response = await Service.put("/joingroup", group);
+    let groupname = response.data;
+    return true;
   },
 };
 
@@ -134,4 +140,4 @@ let Auth = {
     },
   },
 };
-export { Posts, Service, Auth, Groups };
+export { Service, Auth, Groups };

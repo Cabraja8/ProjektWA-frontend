@@ -49,7 +49,7 @@
     <div class="container mt-5 my-4 py-4 my-4 w-80">
       <div class="table-responsive">
         <table
-          class="table m-0 pd-4 py-4 md-4 mx-auto table table-hover shadowbox mx-auto"
+          class="table m-0 pd-4 py-4 md-4 mx-auto table bg-light table-hover shadowbox mx-auto"
         >
           <thead class="thead-darkbg">
             <tr>
@@ -160,6 +160,7 @@
 import { Auth, Service, Groups } from "@/services";
 import ListofGroups from "@/components/ListofGroups.vue";
 import store from "@/store";
+import { getgroups } from "process";
 export default {
   components: { ListofGroups },
   name: "Groups",
@@ -178,10 +179,13 @@ export default {
   },
   methods: {
     async GetGroups() {
+      let joinedUsers = "";
       this.GroupList = [];
       let user = JSON.parse(localStorage.getItem("user"));
 
-      this.GroupList = await Groups.GetGroups({ params: { user } });
+      this.GroupList = await Groups.GetGroups({
+        params: { user, joinedUsers },
+      });
     },
 
     ClickCreate() {

@@ -10,6 +10,7 @@
     "@mdi/font": "^7.0.96",
     "axios": "^1.1.3",
     "core-js": "^3.8.3",
+    "process": "^0.11.10",
     "roboto-fontface": "^0.10.0",
     "vue": "^2.6.14",
     "vue-croppa": "^1.3.8",
