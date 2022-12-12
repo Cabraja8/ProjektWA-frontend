@@ -1,11 +1,6 @@
 <template>
   <div class="Users">
-    <UsersTab
-      class="col"
-      v-for="list in GroupList"
-      :key="list.names"
-      :userstab="list"
-    />
+    <UsersTab />
   </div>
 </template>
 
@@ -21,15 +16,14 @@ export default {
     };
   },
   mounted() {
-    this.GetUsers();
+    // this.GetUsers();
   },
   components: { UsersTab },
   methods: {
-    async GetUsers() {
-      this.GroupList = [];
-
-      this.GroupList = await Users.GetUsers();
-    },
+    // async GetUsers() {
+    //   this.GroupList = [];
+    //   this.GroupList = await Users.GetUsers();
+    // },
   },
 };
 </script>

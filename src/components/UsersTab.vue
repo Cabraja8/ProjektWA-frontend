@@ -13,10 +13,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr class="col" v-for="list in GroupList" :key="list.names">
             <td>Picture</td>
-            <td>{{ userstab.names.join() }}</td>
-            <td>{{ userstab.role.join() }}</td>
+            <td>{{ list.names.join() }}</td>
+            <td>{{ list.role.join() }}</td>
             <td>button</td>
           </tr>
         </tbody>
@@ -26,15 +26,27 @@
 </template>
 
 <script>
+import { Users } from "@/services";
 export default {
   name: "UsersTab",
-  props: ["userstab"],
+
   data() {
-    return {};
+    return {
+      GroupList: [],
+    };
+  },
+  mounted() {
+    this.GetUsers();
   },
 
   components: {},
-  methods: {},
+  methods: {
+    async GetUsers() {
+      this.GroupList = [];
+
+      this.GroupList = await Users.GetUsers();
+    },
+  },
 };
 </script>
 
