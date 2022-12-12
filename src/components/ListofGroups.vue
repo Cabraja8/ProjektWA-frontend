@@ -17,7 +17,7 @@
         <tbody>
           <tr>
             <td>{{ listgroups.groupname }}</td>
-            <td>{{ listgroups.admin }}</td>
+            <td>{{ listgroups.admin.map() }}</td>
             <td>{{ listgroups.companyname }}</td>
             <td>{{ listgroups.groupjoin }}</td>
             <td>{{ listgroups.users }}</td>

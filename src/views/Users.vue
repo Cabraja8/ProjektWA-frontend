@@ -1,33 +1,36 @@
 <template>
   <div class="Users">
-    <div class="table-responsive">
-      <table
-        class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
-      >
-        <thead class="thead-darkbg">
-          <tr>
-            <th></th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Picture</td>
-            <td>Username</td>
-            <td>Role</td>
-            <td>button</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <UsersTab
+      class="col"
+      v-for="list in GroupList"
+      :key="list.names"
+      :userstab="list"
+    />
   </div>
 </template>
 
 <script>
+import UsersTab from "@/components/UsersTab.vue";
+import { Users } from "@/services";
 export default {
   name: "Users",
+
+  data() {
+    return {
+      GroupList: [],
+    };
+  },
+  mounted() {
+    this.GetUsers();
+  },
+  components: { UsersTab },
+  methods: {
+    async GetUsers() {
+      this.GroupList = [];
+
+      this.GroupList = await Users.GetUsers();
+    },
+  },
 };
 </script>
 

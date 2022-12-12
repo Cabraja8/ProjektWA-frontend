@@ -179,12 +179,11 @@ export default {
   },
   methods: {
     async GetGroups() {
-      let joinedUsers = "";
       this.GroupList = [];
       let user = JSON.parse(localStorage.getItem("user"));
 
       this.GroupList = await Groups.GetGroups({
-        params: { user, joinedUsers },
+        params: { user },
       });
     },
 
