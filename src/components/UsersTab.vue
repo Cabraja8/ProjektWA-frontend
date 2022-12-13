@@ -13,10 +13,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="col" v-for="list in GroupList" :key="list.names">
-            <td>Picture</td>
-            <td>{{ list.names.join() }}</td>
-            <td>{{ list.role.join() }}</td>
+          <tr v-for="list in t" :key="list.username">
+            <td>pic</td>
+            <td>{{ list.username }}</td>
+            <td>{{ list.role }}</td>
+
             <td>button</td>
           </tr>
         </tbody>
@@ -33,6 +34,9 @@ export default {
   data() {
     return {
       GroupList: [],
+      rows: [],
+      t: [],
+      colums: [],
     };
   },
   mounted() {
@@ -43,8 +47,18 @@ export default {
   methods: {
     async GetUsers() {
       this.GroupList = [];
-
-      this.GroupList = await Users.GetUsers();
+      let user = JSON.parse(localStorage.getItem("user"));
+      this.GroupList = await Users.GetUsers({ params: { user } });
+      this.GroupList.forEach((element) => {
+        this.rows.push(element.names);
+      });
+      this.rows.forEach((el) => {
+        el.forEach((user) => {
+          console.log(user);
+          this.t.push(user);
+        });
+      });
+      console.log(this.t);
     },
   },
 };

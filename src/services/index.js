@@ -27,8 +27,8 @@ Service.interceptors.response.use(
 );
 
 let Users = {
-  async GetUsers() {
-    let response = await Service.get("/getusers");
+  async GetUsers(user) {
+    let response = await Service.get("/getusers", user);
     let data = response.data;
     data = data.map((group) => {
       return {
@@ -38,8 +38,8 @@ let Users = {
         companyname: group.companyname,
         groupjoin: group.groupjoin,
         inbox: group.inbox,
-        names: group.users.map((user) => user.username),
-        role: group.users.map((user) => user.role),
+        names: group.users,
+        role: group.users,
       };
     });
     return data;

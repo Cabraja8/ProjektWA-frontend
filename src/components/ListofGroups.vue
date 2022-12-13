@@ -1,26 +1,26 @@
 <template>
   <div class="ListofGroups">
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="!currentUsers">
       <table
         class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
       >
         <thead class="thead-darkbg">
           <tr>
             <th scope="col">Group Name</th>
-            <th scope="col">Group Creator</th>
+            <th scope="col">Group Admin</th>
             <th scope="col">Company</th>
             <th scope="col">Join type</th>
-            <th scope="col">users</th>
+
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{ listgroups.groupname }}</td>
-            <td>{{ listgroups.admin.map() }}</td>
+            <td>{{ listgroups.admin }}</td>
             <td>{{ listgroups.companyname }}</td>
             <td>{{ listgroups.groupjoin }}</td>
-            <td>{{ listgroups.users }}</td>
+
             <td v-if="listgroups.groupjoin === 'Free Join'">
               <button
                 @click="JoinGroups(listgroups.groupname)"
@@ -55,11 +55,22 @@ export default {
   data() {
     return {
       user: JSON.parse(localStorage.getItem("user")),
-      currentUsers: this.listgroups.users,
+      currentUsers: false,
     };
   },
-  mounted() {},
+  mounted() {
+    this.CheckInGroup();
+  },
   methods: {
+    CheckInGroup() {
+      console.log(this.$props.listgroups);
+      this.$props.listgroups.users.forEach((element) => {
+        if (this.user.username === element.username) {
+          console.log(this.user.username);
+          this.currentUsers = true;
+        }
+      });
+    },
     async JoinGroups(groupname) {
       let user = JSON.parse(localStorage.getItem("user"));
 
