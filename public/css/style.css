@@ -329,3 +329,9 @@ input[type="group"]:focus {
   text-align: center !important;
   vertical-align: middle !important;
 }
+
+.selectoption-sm {
+  border: 3px solid #141212 !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+}

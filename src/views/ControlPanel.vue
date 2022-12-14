@@ -56,6 +56,7 @@
           v-for="listgroup in groups"
           :key="listgroup.groupname"
           :groupPanel="listgroup"
+          :pickoption="Pick"
         />
       </div>
       <div class="container" v-if="this.Pick === ''">
@@ -88,6 +89,7 @@
 <script>
 import { Service, Groups } from "@/services";
 import GroupPanel from "@/components/GroupPanel.vue";
+
 export default {
   components: {
     GroupPanel,

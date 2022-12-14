@@ -18,22 +18,7 @@
         </button>
       </div>
     </div>
-    <div v-if="GroupList.length === 0" class="container md-5 my-4 py-4 w-80">
-      <div class="table-responsive">
-        <table
-          class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
-        >
-          <thead class="thead-darkbg">
-            <br />
-          </thead>
-          <tbody>
-            <tr class="tr-cent">
-              <th colspan="4" class="cent">There are currently no Groups</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+
     <div class="container md-5 my-4 py-4 w-80">
       <listofGroups
         class="col"
@@ -42,6 +27,7 @@
         :listgroups="list"
       />
     </div>
+    <div class="container my-4 py-4 mt-5"></div>
     <div class="container-fluid my-4 py-4 col">
       <h2 class="h2">Create your own group</h2>
       <div class="border-top border-secondary w-50 mx-auto my-3"></div>
