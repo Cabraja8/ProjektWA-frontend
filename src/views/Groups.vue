@@ -193,6 +193,10 @@ export default {
           groupname: this.groupname,
           companyname: this.companyname,
           groupjoin: this.groupjoin,
+          project: [],
+          tasks: [],
+          inbox: [],
+          users: [],
         };
         try {
           await Groups.CreateGroup(group);

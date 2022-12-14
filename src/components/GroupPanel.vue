@@ -3,7 +3,6 @@
     <div class="container">
       <div class="container mt-5 my-4 py-4 my-4 w-80">
         <div class="table-responsive">
-          {{ pickoption }}
           <table
             class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
           >
@@ -63,27 +62,15 @@
 </template>
 
 <script>
-import UsersTab from "@/components/UsersTab.vue";
 import Users from "@/views/Users.vue";
 export default {
   name: "groupPanel",
-  components: { UsersTab },
-  props: ["groupPanel", "pickoption"],
+  props: ["groupPanel"],
   data() {
-    return {
-      pick: this.pickoption,
-    };
+    return {};
   },
-  mounted() {
-    this.SendOption();
-  },
-  methods: {
-    SendOption() {
-      let pickoption = this.pick;
-      console.log(pickoption, "pickoption");
-      this.$emit("pickoption", pickoption);
-    },
-  },
+  mounted() {},
+  methods: {},
 };
 </script>
 

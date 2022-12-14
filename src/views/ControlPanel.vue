@@ -56,7 +56,6 @@
           v-for="listgroup in groups"
           :key="listgroup.groupname"
           :groupPanel="listgroup"
-          :pickoption="Pick"
         />
       </div>
       <div class="container" v-if="this.Pick === ''">
@@ -114,12 +113,15 @@ export default {
     async GroupPanel() {
       this.groups = [];
       let pickoption = this.Pick;
+      this.eventHub.$emit("pick", pickoption);
 
       this.groups = await Groups.GroupOption({ params: { pickoption } });
     },
   },
+
   mounted() {
     this.GetGroup();
+    this.GroupPanel();
   },
 };
 </script>

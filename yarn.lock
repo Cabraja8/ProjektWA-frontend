@@ -5444,6 +5444,11 @@
     "canvas-exif-orientation" "^0.4.0"
     "object-assign" "^4.1.1"
 
+"vue-event-hub@^1.0.3":
+  "integrity" "sha512-fpw5OC/nUDn/Tln0vxsRRvhY3Qu4ARjkDBn8bGXRSSu6ZDOl3tBcbxXpreOfB6CJzcY/ksKITrnpNLPk357qIA=="
+  "resolved" "https://registry.npmjs.org/vue-event-hub/-/vue-event-hub-1.0.3.tgz"
+  "version" "1.0.3"
+
 "vue-hot-reload-api@^2.3.0":
   "integrity" "sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog=="
   "resolved" "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"

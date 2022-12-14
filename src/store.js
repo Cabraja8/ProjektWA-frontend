@@ -1,10 +1,6 @@
 import { Auth } from "@/services";
 
 export default {
+  currentGroup: "",
   currentUser: "",
-  newUrl: "",
-  cards: [],
-  searchTerm: "",
-  imageData: null,
-  tipKorisnika: null,
 };
