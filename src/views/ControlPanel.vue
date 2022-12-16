@@ -113,7 +113,7 @@ export default {
     async GroupPanel() {
       this.groups = [];
       let pickoption = this.Pick;
-      this.eventHub.$emit("pick", pickoption);
+      localStorage.setItem("pick", JSON.stringify(pickoption));
 
       this.groups = await Groups.GroupOption({ params: { pickoption } });
     },

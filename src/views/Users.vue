@@ -1,38 +1,43 @@
 <template>
   <div class="User">
-    <div class="table-responsive" v-if="!editUser">
-      <table
-        class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
-      >
-        <thead class="thead-darkbg">
-          <tr>
-            <th></th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Manage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="list in colums" :key="list.username">
-            <td>pic</td>
-            <td>{{ list.username }}</td>
-            <td>
-              {{ list.role }}
-            </td>
-            <td>
-              <button
-                @click="ManageUser(list)"
-                type="button rightbtn btn-sm"
-                class="btn-secondary"
-              >
-                <i class="fa-solid fa-xl fa-gear"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container" v-if="this.colums.length !== 0">
+      <div class="table-responsive" v-if="!editUser">
+        <table
+          class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
+        >
+          <thead class="thead-darkbg">
+            <tr>
+              <th></th>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="list in colums" :key="list.username">
+              <td>pic</td>
+              <td>{{ list.username }}</td>
+              <td>
+                {{ list.role }}
+              </td>
+              <td>
+                <button
+                  @click="ManageUser(list)"
+                  type="button rightbtn btn-sm"
+                  class="btn-secondary"
+                >
+                  <i class="fa-solid fa-xl fa-gear"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="container" v-if="editUser">edit tab</div>
     </div>
-    <div class="container" v-if="editUser">edit tab</div>
+    <div class="container">
+      <p v-if="this.colums.length === 0">There're currently no users</p>
+    </div>
   </div>
 </template>
 
@@ -58,12 +63,6 @@ export default {
   mounted() {
     this.GetUsers();
   },
-  created() {
-    this.eventHub.$on("pick", (data) => {
-      this.pick = this.data;
-      console.log("data ->", data);
-    });
-  },
 
   components: {},
   methods: {
@@ -78,7 +77,7 @@ export default {
     async GetUsers() {
       this.GroupList = [];
       let user = JSON.parse(localStorage.getItem("user"));
-      let pickoption = this.pick;
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
 
       console.log(pickoption, "pickoption");
       this.GroupList = await Users.GetUsers({ params: { pickoption } });
