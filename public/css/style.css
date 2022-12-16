@@ -320,7 +320,7 @@ input[type="group"]:focus {
 }
 
 .tr-bigcent {
-  height: 800px !important;
+  height: 600px !important;
   text-align: center !important;
   vertical-align: middle !important;
 }
@@ -334,4 +334,14 @@ input[type="group"]:focus {
   border: 3px solid #141212 !important;
   font-size: 15px !important;
   font-weight: bold !important;
+}
+.textarea-border {
+  border: 3px solid #141212 !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
+
+.text-center {
+  text-align: center !important;
+  vertical-align: middle !important;
 }

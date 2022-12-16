@@ -78,6 +78,8 @@ export default {
         await Groups.JoinGroup({
           groupname: groupname,
           username: user.username,
+          notes: "",
+          img: "",
         });
         setTimeout(() => {
           this.$router.push({ name: "DashBoard" });
@@ -86,8 +88,14 @@ export default {
         console.log(e);
       }
     },
-    AskToJoinGroup(groupname) {
-      console.log(groupname);
+    async AskToJoinGroup(groupname) {
+      let user = JSON.parse(localStorage.getItem("user"));
+
+      try {
+        await Groups.AskToJoinGroup({ params: { groupname, user } });
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };

@@ -79,7 +79,7 @@
                 <div class="container py-4 col-lg-12 col-sm-6 col-md-6 w-50">
                   <p class="d-flex text-center">Your group name:</p>
                   <input
-                    type="textforgroup"
+                    type="group"
                     placeholder="Group Name"
                     class="form-control"
                     id="search"
@@ -89,7 +89,7 @@
                 <div class="container py-4 col-lg-12 col-sm-6 col-md-6 w-50">
                   <p class="d-flex text-center">Your company name:</p>
                   <input
-                    type="textforcompany"
+                    type="group"
                     placeholder="Company name"
                     class="form-control"
                     id="search"

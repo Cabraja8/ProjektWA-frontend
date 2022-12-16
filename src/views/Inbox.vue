@@ -13,9 +13,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="list in InboxList" :key="list.inbox">
             <td>Picture</td>
-            <td>Username</td>
+            <td>{{ list.inbox }}</td>
 
             <td>button</td>
           </tr>
@@ -26,8 +26,24 @@
 </template>
 
 <script>
+import { Inbox } from "@/services";
+
 export default {
   name: "Inbox",
+  data() {
+    return {
+      InboxList: [],
+    };
+  },
+  methods: {
+    async GetInbox() {
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+      this.InboxList = await Inbox.GetInbox({ params: { pickoption } });
+    },
+  },
+  mounted() {
+    this.GetInbox();
+  },
 };
 </script>
 

@@ -43,6 +43,29 @@ let Users = {
     });
     return data;
   },
+  async EditUser(pick, userData) {
+    let response = await Service.put("/EditUser", pick, userData);
+    let guserinfo = response.data;
+    return true;
+  },
+};
+let Inbox = {
+  async GetInbox(pick) {
+    let response = await Service.get("/GetInbox", pick);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
 };
 
 let Groups = {
@@ -107,6 +130,11 @@ let Groups = {
     let groupname = response.data;
     return true;
   },
+  async AskToJoinGroup(usergroup) {
+    let response = await Service.put("/AskToJoinGroup", usergroup);
+    let groupname = response.data;
+    return true;
+  },
 };
 
 let Auth = {
@@ -126,6 +154,7 @@ let Auth = {
     let user = {
       username: username,
       password: password,
+      img: "",
     };
     let result = await Service.post("/users", user);
     console.log(result);
@@ -159,4 +188,4 @@ let Auth = {
     },
   },
 };
-export { Service, Auth, Groups, Users };
+export { Service, Auth, Groups, Users, Inbox };
