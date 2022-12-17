@@ -1,64 +1,106 @@
 <template>
   <div class="Settings">
-    <div class="container py-6 padding py-4 my-4">
+    <div
+      class="row w-100 align items-center justify-content form-container formcon"
+    >
       <div
-        class="row w-100 align items-center justify-content form-container formcon"
-      >
-        <div
-          class="container container-blackbor row w-100 align items-center justify-content form-container formcon"
-        ></div>
-
-        <div
-          class="col-sm-8 col-md-6 col-lg-4 rounded p-4 shadow pd-4 w-80-bord"
-        >
-          <form>
-            <ul v-for="list in Group" :key="list.groupname">
-              <div class="mb-4 d-flex justify-content-between">
-                <label for="Email" class="form-label"
-                  >Group Name: {{ list.groupname }}</label
+        class="container container-blackbor row w-100 align items-center justify-content form-container formcon"
+      ></div>
+      <div class="col-sm-8 col-md-6 col-lg-4 rounded p-4 shadow pd-4 w-80-bord">
+        <table class="table table-border">
+          <thead>
+            <tr></tr>
+          </thead>
+          <tbody v-for="list in Group" :key="list.groupname">
+            <tr>
+              <td class="th-bg">Grop Name:</td>
+              <td class="td-bg">
+                {{ list.groupname }}
+              </td>
+            </tr>
+            <tr>
+              <td class="th-bg">Company Name:</td>
+              <td class="td-bg" v-if="!editCompanyName">
+                {{ list.companyname }}
+                <button
+                  type="button rightbtn "
+                  class="btn btn-sm btn-light"
+                  @click.once="ChangeCompanyName"
                 >
-                <!-- <input
-                type="E-mail"
-                class="form-control"
-                id="Email"
-                placeholder="Username"
-              /> -->
-              </div>
-              <div class="mb-4 d-flex justify-content-between">
-                <label for="password" class="form-label"
-                  >Company Name: {{ list.companyname }}</label
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+              </td>
+              <td
+                class="td-bg d-flex justify-content-center"
+                v-if="editCompanyName"
+              >
+                <input
+                  v-model="CompanyName"
+                  type="group"
+                  class="form-control w-50"
+                  :placeholder="list.companyname"
+                />
+                <button
+                  type="button rightbtn "
+                  @click="AcceptChangeCompanyName(list.companyname)"
+                  class="btn btn-sm btn-success"
                 >
-                <!-- <input
-                type="password"
-                class="form-control"
-                id="password"
-                placeholder="Password"
-              /> -->
-              </div>
-              <div class="mb-4 d-flex justify-content-between">
-                <label for="password" class="form-label"
-                  >Group Join Type: {{ list.groupjoin }}</label
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <button
+                  type="button rightbtn "
+                  @click="CancelChangeCompanyName"
+                  class="btn btn-sm btn-danger"
                 >
-                <!-- <input
-                type="password"
-                class="form-control"
-                id="password"
-                placeholder="Password"
-              /> -->
-              </div>
+                  <i class="fa-solid fa-x"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td class="th-bg">Group Join Type:</td>
+              <td class="td-bg" v-if="!editGroupJoinType">
+                {{ list.groupjoin }}
+                <button
+                  @click="ChangeInviteType"
+                  type="button rightbtn "
+                  class="btn btn-sm btn-light"
+                >
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+              </td>
 
-              <!-- <div class="form-group">
-              <button type="button rightbtn " class="btn btn-success">
-                <i class="fa-solid fa-check"></i> Apply
-              </button>
-
-              <button type="button rightbtn " class="btn btn-danger">
-                <i class="fa-solid fa-x"></i> Cancel
-              </button>
-            </div> -->
-            </ul>
-          </form>
-        </div>
+              <td
+                class="td-bg d-flex justify-content-center"
+                v-if="editGroupJoinType"
+              >
+                <select
+                  class="form-control w-50 sel"
+                  id="selectoption"
+                  type="group"
+                  :placeholder="list.groupjoin"
+                  v-model="GroupJoinType"
+                >
+                  <option value="Free Join">Free Join</option>
+                  <option value="Invite Only">Invite Only</option>
+                </select>
+                <button
+                  type="button rightbtn "
+                  class="btn btn-sm btn-success"
+                  @click="AcceptChangeGroupJoin(list.groupjoin)"
+                >
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <button
+                  type="button rightbtn "
+                  @click="CancelChangeGroupJoin"
+                  class="btn btn-sm btn-danger"
+                >
+                  <i class="fa-solid fa-x"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -70,17 +112,48 @@ export default {
   name: "Settings",
   data() {
     return {
-      GroupName: "",
       CompanyName: "",
       GroupJoinType: "",
       Group: [],
       groupmap: [],
+      editCompanyName: false,
+      editGroupJoinType: false,
     };
   },
   methods: {
     async GetGroupInfo() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
       this.Group = await Groups.GetGroupInfo({ params: { pickoption } });
+    },
+    ChangeCompanyName() {
+      this.editCompanyName = true;
+    },
+    ChangeInviteType() {
+      this.editGroupJoinType = true;
+    },
+    CancelChangeCompanyName() {
+      this.editCompanyName = false;
+    },
+    CancelChangeGroupJoin() {
+      this.editGroupJoinType = false;
+    },
+    async AcceptChangeCompanyName(companyname) {
+      console.log(companyname);
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+      let company = this.CompanyName;
+      if (company === "") {
+        company = companyname;
+      }
+      await Groups.ChangeGroupCompanyName({ params: { pickoption, company } });
+    },
+    async AcceptChangeGroupJoin(groupjointype) {
+      console.log(groupjointype);
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+      let groupjoin = this.GroupJoinType;
+      if (groupjoin === "") {
+        groupjoin = groupjointype;
+      }
+      await Groups.ChangeGroupJoinType({ params: { pickoption, groupjoin } });
     },
   },
   mounted() {

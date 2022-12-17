@@ -364,3 +364,32 @@ input[type="group"]:focus {
   width: 80% !important;
   border: 5px black solid;
 }
+.th-bg {
+  background-color: black !important;
+  color: #ffffff !important;
+  border: #ffffff !important;
+  width: 250px;
+  height: 80px;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+.td-bg {
+  background-color: white !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-weight: bold !important;
+}
+
+.table-border {
+  border: #141212 6px solid !important;
+}
+.aligncent {
+  vertical-align: middle !important;
+}
+.sel {
+  border: 5px solid #141212 !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  vertical-align: center !important;
+  font-weight: bold !important;
+}

@@ -9,6 +9,7 @@ import DashBoard from "../views/Dashboard.vue";
 import ControlPanel from "../views/ControlPanel.vue";
 import GroupPanel from "../components/GroupPanel.vue";
 import Users from "../views/Users.vue";
+import FindUsers from "../views/FindUsers.vue";
 import Tasks from "../views/Tasks.vue";
 import Project from "../views/Project.vue";
 import Inbox from "../views/Inbox.vue";
@@ -67,6 +68,11 @@ const routes = [
         path: "Users",
         name: "Users",
         component: Users,
+      },
+      {
+        path: "FindUsers",
+        name: "FindUsers",
+        component: FindUsers,
       },
       {
         path: "Inbox",

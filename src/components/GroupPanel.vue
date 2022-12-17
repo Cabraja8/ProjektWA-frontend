@@ -1,7 +1,9 @@
 <template>
   <div class="GroupPanel">
     <div class="container">
-      <div class="container mt-5 my-4 py-4 my-4 w-80">
+      <div
+        class="container mt-5 my-4 py-4 my-4 w-80 col-lg-12 col-md-6 col-sm-3"
+      >
         <div class="table-responsive">
           <table
             class="table m-0 pd-4 py-4 md-4 mx-auto table-border-gray shadowbox mx-auto"
@@ -27,6 +29,13 @@
                     <li class="nav-item">
                       <router-link to="/ControlPanel/Users" class="nav-link"
                         >Users</router-link
+                      >
+                    </li>
+                  </th>
+                  <th scope="col">
+                    <li class="nav-item">
+                      <router-link to="/ControlPanel/FindUsers" class="nav-link"
+                        >Find Users</router-link
                       >
                     </li>
                   </th>

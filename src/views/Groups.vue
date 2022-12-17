@@ -193,7 +193,11 @@ export default {
           groupname: this.groupname,
           companyname: this.companyname,
           groupjoin: this.groupjoin,
-          project: [],
+          project: {
+            description: "",
+            information: "",
+          },
+
           tasks: [],
           inbox: [],
           users: [],

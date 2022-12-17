@@ -43,8 +43,13 @@ let Users = {
     });
     return data;
   },
-  async EditUser(pick, userData) {
-    let response = await Service.put("/EditUser", pick, userData);
+  async EditUserRole(pick, roles, name) {
+    let response = await Service.put("/EditUserRole", pick, roles, name);
+    let userinfo = response.data;
+    return true;
+  },
+  async EditUserNotes(pick, notes, name) {
+    let response = await Service.put("/EditUserNotes", pick, notes, name);
     let userinfo = response.data;
     return true;
   },
@@ -80,6 +85,50 @@ let Inbox = {
 };
 
 let Groups = {
+  async EditProjectInformation(option, info) {
+    let response = await Service.put("/EditProjectInformation", option, info);
+    let desc = response.data;
+    return true;
+  },
+
+  async EditProjectDescription(option, description) {
+    let response = await Service.put(
+      "/EditProjectDescription",
+      option,
+      description
+    );
+    let desc = response.data;
+    return true;
+  },
+  async GetProject(option) {
+    let response = await Service.get("/ProjectInfo", option);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        tasks: group.tasks,
+        project: group.project,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+
+  async ChangeGroupCompanyName(option, company) {
+    let response = await Service.put("/ChangeCompanyName", option, company);
+    let groupname = response.data;
+    return true;
+  },
+  async ChangeGroupJoinType(option, groupjoin) {
+    let response = await Service.put("/ChangeGroupJoinType", option, groupjoin);
+    let groupname = response.data;
+    return true;
+  },
   async GetGroupInfo(groupopt) {
     let response = await Service.get("/GetGroupInfo", groupopt);
     let data = response.data;
@@ -183,6 +232,7 @@ let Auth = {
       username: username,
       password: password,
       img: "",
+      dm: [],
     };
     let result = await Service.post("/users", user);
     console.log(result);

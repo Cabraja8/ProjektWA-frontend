@@ -3,7 +3,7 @@
     <div class="container" v-if="this.colums.length !== 0">
       <div class="table-responsive" v-if="!editUser">
         <table
-          class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
+          class="table m-0 pd-4 py-4 md-4 mx-auto bg-light shadowbox mx-auto"
         >
           <thead class="thead-darkbg">
             <tr>
@@ -26,8 +26,8 @@
               <td>
                 <button
                   @click="ManageUser(list)"
-                  type="button rightbtn btn-sm"
-                  class="btn-secondary"
+                  type="button  btn-sm"
+                  class="btn-light"
                 >
                   <i class="fa-solid fa-xl fa-gear"></i>
                 </button>
@@ -46,70 +46,119 @@
         </table>
       </div>
       <div class="container" v-if="editUser">
-        <div class="table-responsive">
-          <table class="table m-0 pd-4 py-4 md-4 mx-auto">
-            <thead class="thead-darkbg">
-              <th>Username: {{ this.username }} Role: {{ this.role }}</th>
-            </thead>
+        <div
+          class="row w-100 align items-center justify-content form-container formcon"
+        >
+          <div
+            class="col-sm-8 col-md-6 col-lg-4 rounded p-4 shadow pd-4 w-80-bord"
+          >
+            <table class="table table-border">
+              <thead>
+                <tr></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="th-bg">User:</td>
+                  <td class="td-bg">{{ this.username }}</td>
+                </tr>
+                <tr>
+                  <td class="th-bg">Role:</td>
+                  <td class="td-bg">
+                    <div v-if="!clicked">
+                      {{ this.role }}
 
-            <tbody>
-              <tr class="mx-auto py-4 md-4 pd-4">
-                <div class="container w-40 cente">
-                  <div class="form-group">
-                    <label for="notes" class="form-label">Add Notes:</label>
-                    <textarea
-                      type="group"
-                      placeholder="Add some notes...."
-                      class="form-control rounded-0 textarea-border"
-                      id="exampleFormControlTextarea2"
-                      rows="3"
-                      v-model="Notes"
-                      :v-placeholder="Notes"
-                    ></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="role" class="form-label">Change Role:</label>
-
-                    <select
-                      class="form-control textarea-border"
-                      id="group"
-                      v-model="NewRole"
-                    >
-                      <option v-if="this.role !== 'Member'" value="Member">
-                        Member
-                      </option>
-                      <option
-                        v-if="this.role !== 'Moderator'"
-                        value="Moderator"
+                      <button
+                        type="button rightbtn "
+                        class="btn btn-sm btn-light"
+                        @click="ClickEdit"
                       >
-                        Moderator
-                      </option>
-                      <option v-if="this.role !== 'Admin'" value="Admin">
-                        Admin
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <button
-                      type="button rightbtn "
-                      class="btn btn-sm btn-success"
-                      @click="EditUser"
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                    </div>
+                    <div
+                      class="td-bg d-flex justify-content-center"
+                      v-if="clicked"
                     >
-                      <i class="fa-solid fa-check"></i> Apply
-                    </button>
-
-                    <button
-                      type="button rightbtn "
-                      class="btn btn-sm btn-danger"
-                      @click="CancelManageUser"
-                    >
-                      <i class="fa-solid fa-x"></i> Cancel
-                    </button>
-                  </div>
-                </div>
-              </tr>
-            </tbody>
-          </table>
+                      <select
+                        class="form-control textarea-border w-50 sel"
+                        id="group"
+                        v-model="NewRole"
+                      >
+                        <option v-if="this.role !== 'Member'" value="Member">
+                          Member
+                        </option>
+                        <option
+                          v-if="this.role !== 'Moderator'"
+                          value="Moderator"
+                        >
+                          Moderator
+                        </option>
+                      </select>
+                      <button
+                        type="button rightbtn "
+                        class="btn btn-sm btn-success"
+                        @click="EditUserRole"
+                      >
+                        <i class="fa-solid fa-check"></i>
+                      </button>
+                      <button
+                        type="button rightbtn "
+                        class="btn btn-sm btn-danger"
+                        @click="CancelEditRole"
+                      >
+                        <i class="fa-solid fa-x"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="th-bg">Notes:</td>
+                  <td class="td-bg">
+                    <div v-if="!clicked2">
+                      <div class="form-group">
+                        <button
+                          type="button rightbtn "
+                          class="btn btn-sm btn-light"
+                          @click="ClickEditNotes"
+                        >
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div v-if="clicked2">
+                      <div class="form-group">
+                        <textarea
+                          type="group"
+                          placeholder="Add some notes...."
+                          class="form-control rounded-0 textarea-border"
+                          id="exampleFormControlTextarea2"
+                          rows="3"
+                          v-model="Notes"
+                          :v-placeholder="Notes"
+                        ></textarea>
+                      </div>
+                      <div class="form-group">
+                        <button
+                          type="button rightbtn "
+                          class="btn btn-sm btn-success"
+                          @click="EditUserNotes"
+                        >
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button
+                          type="button rightbtn "
+                          class="btn btn-sm btn-danger"
+                          @click="CancelEditNotes"
+                        >
+                          <i class="fa-solid fa-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -128,6 +177,8 @@ export default {
 
   data() {
     return {
+      clicked: false,
+      clicked2: false,
       editUser: false,
       GroupList: [],
       rows: [],
@@ -139,6 +190,7 @@ export default {
       Pick: "",
       Notes: "",
       NewRole: "",
+      currentNotes: "",
     };
   },
 
@@ -152,25 +204,53 @@ export default {
       this.editUser = true;
       this.username = users.username;
       this.role = users.role;
+      this.currentNotes = users.notes;
       console.log(users.username, "korisnik");
       console.log(users.role, "role");
+      console.log(users.notes, "notes");
     },
     CancelManageUser() {
       this.editUser = false;
     },
-    async EditUser() {
+    ClickEdit() {
+      this.clicked = true;
+    },
+    CancelEditRole() {
+      this.clicked = false;
+    },
+    ClickEditNotes() {
+      this.clicked2 = true;
+    },
+    CancelEditNotes() {
+      this.clicked2 = false;
+    },
+    async EditUserRole() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
-      let userData = {
-        Name: this.username,
-        Notes: this.Notes,
-        Role: this.NewRole,
-      };
-      console.log(userData, "userdata");
+
+      let name = this.username;
+      let roles = this.NewRole;
+
       if (this.NewRole === "") {
-        userData.Role = this.role;
+        roles = this.role;
       }
+
       try {
-        await Users.EditUser({ params: { pickoption, userData } });
+        await Users.EditUserRole({ params: { pickoption, roles, name } });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async EditUserNotes() {
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+
+      let name = this.username;
+      let notes = this.Notes;
+      if (notes === "") {
+        notes = this.currentNotes;
+      }
+
+      try {
+        await Users.EditUserNotes({ params: { pickoption, notes, name } });
       } catch (e) {
         console.log(e);
       }
