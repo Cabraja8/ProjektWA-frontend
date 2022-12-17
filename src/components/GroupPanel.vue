@@ -4,7 +4,7 @@
       <div class="container mt-5 my-4 py-4 my-4 w-80">
         <div class="table-responsive">
           <table
-            class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
+            class="table m-0 pd-4 py-4 md-4 mx-auto table-border-gray shadowbox mx-auto"
           >
             <thead class="thead-darkbg">
               <nav class="navbar navbar-expand-lg">

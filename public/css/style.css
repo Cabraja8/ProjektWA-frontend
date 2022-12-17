@@ -345,3 +345,22 @@ input[type="group"]:focus {
   text-align: center !important;
   vertical-align: middle !important;
 }
+.td-width {
+  width: 40%;
+}
+.cente {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.table-border-gray {
+  background-color: #e0e0e0 !important;
+}
+.w-40 {
+  width: 40% !important;
+  border: 5px black solid;
+}
+.w-80-bord {
+  width: 80% !important;
+  border: 5px black solid;
+}

@@ -12,6 +12,7 @@
               <th>Role</th>
               <th>Notes</th>
               <th>Manage</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -31,67 +32,83 @@
                   <i class="fa-solid fa-xl fa-gear"></i>
                 </button>
               </td>
+              <td>
+                <button
+                  type="button  "
+                  class="btn btn-sm btn-danger"
+                  @click.once="KickUser(list.username)"
+                >
+                  <i class="fa-solid fa-x"></i> Kick
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="container" v-if="editUser">
         <div class="table-responsive">
-          <table
-            class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
-          >
+          <table class="table m-0 pd-4 py-4 md-4 mx-auto">
             <thead class="thead-darkbg">
               <th>Username: {{ this.username }} Role: {{ this.role }}</th>
             </thead>
-            <div class="container w-50">
-              <div class="mb-4">
-                <label for="notes" class="form-label">Add Notes:</label>
-                <textarea
-                  type="group"
-                  placeholder="Add some notes...."
-                  class="form-control rounded-0 textarea-border"
-                  id="exampleFormControlTextarea2"
-                  rows="3"
-                  v-model="Notes"
-                ></textarea>
-              </div>
-              <div class="mb-4">
-                <label for="role" class="form-label">Change Role:</label>
 
-                <select
-                  class="form-control textarea-border"
-                  id="group"
-                  v-model="NewRole"
-                >
-                  <option v-if="this.role !== 'Member'" value="Member">
-                    Member
-                  </option>
-                  <option v-if="this.role !== 'Moderator'" value="Moderator">
-                    Moderator
-                  </option>
-                  <option v-if="this.role !== 'Admin'" value="Admin">
-                    Admin
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="btn">
-              <button
-                type="button rightbtn "
-                class="btn btn-sm btn-success btn-bord"
-                @click="EditUser"
-              >
-                <i class="fa-solid fa-check"></i> Apply
-              </button>
+            <tbody>
+              <tr class="mx-auto py-4 md-4 pd-4">
+                <div class="container w-40 cente">
+                  <div class="form-group">
+                    <label for="notes" class="form-label">Add Notes:</label>
+                    <textarea
+                      type="group"
+                      placeholder="Add some notes...."
+                      class="form-control rounded-0 textarea-border"
+                      id="exampleFormControlTextarea2"
+                      rows="3"
+                      v-model="Notes"
+                      :v-placeholder="Notes"
+                    ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="role" class="form-label">Change Role:</label>
 
-              <button
-                type="button rightbtn "
-                class="btn btn-sm btn-danger btn-bord"
-                @click="CancelManageUser"
-              >
-                <i class="fa-solid fa-x"></i> Cancel
-              </button>
-            </div>
+                    <select
+                      class="form-control textarea-border"
+                      id="group"
+                      v-model="NewRole"
+                    >
+                      <option v-if="this.role !== 'Member'" value="Member">
+                        Member
+                      </option>
+                      <option
+                        v-if="this.role !== 'Moderator'"
+                        value="Moderator"
+                      >
+                        Moderator
+                      </option>
+                      <option v-if="this.role !== 'Admin'" value="Admin">
+                        Admin
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      type="button rightbtn "
+                      class="btn btn-sm btn-success"
+                      @click="EditUser"
+                    >
+                      <i class="fa-solid fa-check"></i> Apply
+                    </button>
+
+                    <button
+                      type="button rightbtn "
+                      class="btn btn-sm btn-danger"
+                      @click="CancelManageUser"
+                    >
+                      <i class="fa-solid fa-x"></i> Cancel
+                    </button>
+                  </div>
+                </div>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -149,11 +166,20 @@ export default {
         Role: this.NewRole,
       };
       console.log(userData, "userdata");
+      if (this.NewRole === "") {
+        userData.Role = this.role;
+      }
       try {
         await Users.EditUser({ params: { pickoption, userData } });
       } catch (e) {
         console.log(e);
       }
+    },
+    async KickUser(username) {
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+
+      console.log(username);
+      await Users.KickUser({ params: { pickoption, username } });
     },
 
     async GetUsers() {

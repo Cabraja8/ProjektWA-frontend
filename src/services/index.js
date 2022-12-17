@@ -45,7 +45,12 @@ let Users = {
   },
   async EditUser(pick, userData) {
     let response = await Service.put("/EditUser", pick, userData);
-    let guserinfo = response.data;
+    let userinfo = response.data;
+    return true;
+  },
+  async KickUser(pickusername) {
+    let response = await Service.put("/KickUser", pickusername);
+    let userinfo = response.data;
     return true;
   },
 };
@@ -66,9 +71,32 @@ let Inbox = {
     });
     return data;
   },
+
+  async DeclineJoin(pickusername) {
+    let response = await Service.put("/DeclineInvite", pickusername);
+    let userinfo = response.data;
+    return true;
+  },
 };
 
 let Groups = {
+  async GetGroupInfo(groupopt) {
+    let response = await Service.get("/GetGroupInfo", groupopt);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+
   async CreateGroup(group) {
     let response = await Service.post("/groups", group);
     console.log(response);

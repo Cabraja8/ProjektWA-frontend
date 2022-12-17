@@ -23,7 +23,7 @@
 
             <td v-if="listgroups.groupjoin === 'Free Join'">
               <button
-                @click="JoinGroups(listgroups.groupname)"
+                @click.once="JoinGroups(listgroups.groupname)"
                 type="button rightbtn "
                 class="btn btn-sm btn-success"
               >
@@ -33,7 +33,7 @@
 
             <td v-if="listgroups.groupjoin === 'Invite Only'">
               <button
-                @click="AskToJoinGroup(listgroups.groupname)"
+                @click.once="AskToJoinGroup(listgroups.groupname)"
                 type="button rightbtn "
                 class="btn btn-sm btn-success"
               >
@@ -63,8 +63,14 @@ export default {
   },
   methods: {
     CheckInGroup() {
-      console.log(this.$props.listgroups);
+      console.log(this.$props.listgroups, "prop");
       this.$props.listgroups.users.forEach((element) => {
+        if (this.user.username === element.username) {
+          console.log(this.user.username);
+          this.currentUsers = true;
+        }
+      });
+      this.$props.listgroups.inbox.forEach((element) => {
         if (this.user.username === element.username) {
           console.log(this.user.username);
           this.currentUsers = true;
@@ -93,6 +99,9 @@ export default {
 
       try {
         await Groups.AskToJoinGroup({ params: { groupname, user } });
+        setTimeout(() => {
+          this.$router.go();
+        }, 500);
       } catch (e) {
         console.log(e);
       }
