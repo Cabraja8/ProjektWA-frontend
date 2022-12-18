@@ -393,3 +393,6 @@ input[type="group"]:focus {
   vertical-align: center !important;
   font-weight: bold !important;
 }
+.w-90 {
+  width: 90% !important;
+}

@@ -35,33 +35,40 @@
             <ul class="navbar-nav ml-auto">
               <span v-if="!auth.authenticated">
                 <li class="navbar-brand">
-                  <router-link to="/" class="nav-link">Home</router-link>
+                  <router-link to="/" class="nav-link"
+                    ><i class="fa-solid fa-house"></i> Home</router-link
+                  >
                 </li>
               </span>
               <span v-if="!auth.authenticated">
                 <li class="navbar-brand">
-                  <router-link to="/Login" class="nav-link">Log in</router-link>
+                  <router-link to="/Login" class="nav-link"
+                    ><i class="fa-solid fa-right-to-bracket"></i> Log
+                    in</router-link
+                  >
                 </li>
               </span>
 
               <span v-if="auth.authenticated">
                 <li class="navbar-brand">
                   <router-link to="/Groups" class="nav-link"
-                    >Groups</router-link
+                    ><i class="fa-solid fa-circle"></i> Groups</router-link
                   >
                 </li>
               </span>
               <span v-if="auth.authenticated">
                 <li class="navbar-brand">
                   <router-link to="/DashBoard" class="nav-link"
-                    >Dashboard</router-link
+                    ><i class="fa-solid fa-table-columns"></i>
+                    Dashboard</router-link
                   >
                 </li>
               </span>
               <span v-if="auth.authenticated">
                 <li class="navbar-brand">
                   <router-link to="/ControlPanel" class="nav-link"
-                    >Control Panel</router-link
+                    ><i class="fa-regular fa-clapperboard"></i> Control
+                    Panel</router-link
                   >
                 </li>
               </span>
@@ -84,14 +91,18 @@
                         <span v-if="auth.authenticated">
                           <li class="navbar-brand">
                             <router-link to="/Profile" class="nav-link"
-                              >Profile</router-link
+                              ><i class="fa-solid fa-user"></i>
+                              Profile</router-link
                             >
                           </li>
                         </span>
                         <div class="dropdown-divider"></div>
                         <span v-if="auth.authenticated">
                           <li class="navbar-brand">
-                            <a @click="logout" class="nav-link" href>Logout</a>
+                            <a @click="logout" class="nav-link" href
+                              ><i class="fa-solid fa-right-from-bracket"></i>
+                              Logout</a
+                            >
                           </li>
                         </span>
                       </div>

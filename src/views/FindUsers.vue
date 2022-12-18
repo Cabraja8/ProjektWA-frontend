@@ -19,19 +19,35 @@
     </div>
     <div class="container">
       <h2 class="h2">UserList</h2>
-      <div class="border-top border-secondary w-50 mx-auto my-3"></div>
+      <div class="border-top border-secondary w-50 mx-auto my-3">
+        <UserList v-for="list in users" :key="list.id" :userlist="list" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import UserList from "@/components/UserList.vue";
+import { Users } from "@/services";
 export default {
   name: "FindUsers",
+  components: { UserList },
   data() {
-    return {};
+    return {
+      users: [],
+    };
   },
-  methods: {},
-  mounted() {},
+  methods: {
+    async GetAllUsers() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      let currentUsers = JSON.parse(localStorage.getItem("currentusers"));
+
+      this.users = await Users.GetAllUsers({ params: { user, currentUsers } });
+    },
+  },
+  mounted() {
+    this.GetAllUsers();
+  },
 };
 </script>
 

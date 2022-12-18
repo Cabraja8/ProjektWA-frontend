@@ -1,42 +1,42 @@
 <template>
   <div class="Inbox">
-    <div v-if="this.colums.length !== 0">
-      <div class="table-responsive">
-        <table
-          class="table m-0 pd-4 py-4 md-4 mx-auto table-striped table-hover shadowbox mx-auto"
-        >
-          <thead class="thead-darkbg">
-            <tr>
-              <th>/</th>
-              <th>From</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="list in colums" :key="list.username">
-              <td>{{ list.picture }}</td>
-              <td class="td-width">{{ list.username }}</td>
+    <div class="container w-90">
+      <div v-if="this.colums.length !== 0">
+        <div class="table-responsive">
+          <table class="table m-0 py-4 md-4 mx-auto bg-light shadowbox mx-auto">
+            <thead class="thead-darkbg">
+              <tr>
+                <th>/</th>
+                <th>From</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="list in colums" :key="list.username">
+                <td>{{ list.picture }}</td>
+                <td class="td-width">{{ list.username }}</td>
 
-              <td class="td-width">
-                <div class="container">
-                  <button
-                    class="btn btn-sm btn-success"
-                    @click.once="AcceptJoin(list.username)"
-                  >
-                    <i class="fa-solid fa-check"></i> Accept
-                  </button>
+                <td class="td-width">
+                  <div class="container">
+                    <button
+                      class="btn btn-sm btn-success"
+                      @click.once="AcceptJoin(list.username)"
+                    >
+                      <i class="fa-solid fa-check"></i> Accept
+                    </button>
 
-                  <button
-                    class="btn btn-sm btn-danger"
-                    @click.once="DeclineJoin(list.username)"
-                  >
-                    <i class="fa-solid fa-x"></i> Decline
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click.once="DeclineJoin(list.username)"
+                    >
+                      <i class="fa-solid fa-x"></i> Decline
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <div class="container">

@@ -1,6 +1,6 @@
 <template>
   <div class="User">
-    <div class="container" v-if="this.colums.length !== 0">
+    <div class="container w-90" v-if="this.colums.length !== 0">
       <div class="table-responsive" v-if="!editUser">
         <table
           class="table m-0 pd-4 py-4 md-4 mx-auto bg-light shadowbox mx-auto"
@@ -114,6 +114,7 @@
                 <tr>
                   <td class="th-bg">Notes:</td>
                   <td class="td-bg">
+                    {{ this.currentNotes }}
                     <div v-if="!clicked2">
                       <div class="form-group">
                         <button
@@ -191,11 +192,13 @@ export default {
       Notes: "",
       NewRole: "",
       currentNotes: "",
+      currentUsers: [],
     };
   },
 
   mounted() {
     this.GetUsers();
+    console.log(this.currentUsers);
   },
 
   components: {},
@@ -248,7 +251,6 @@ export default {
       if (notes === "") {
         notes = this.currentNotes;
       }
-
       try {
         await Users.EditUserNotes({ params: { pickoption, notes, name } });
       } catch (e) {
@@ -273,6 +275,11 @@ export default {
 
       this.rows.forEach((el) => {
         el.forEach((user) => {
+          this.currentUsers.push(user.username);
+          localStorage.setItem(
+            "currentusers",
+            JSON.stringify(this.currentUsers)
+          );
           this.colums.push(user);
         });
       });

@@ -27,6 +27,18 @@ Service.interceptors.response.use(
 );
 
 let Users = {
+  async GetAllUsers(user, currentusers) {
+    let response = await Service.get("/getAllUsers", user, currentusers);
+    let data = response.data;
+    data = data.map((user) => {
+      return {
+        id: user._id,
+        username: user.username,
+        img: user.img,
+      };
+    });
+    return data;
+  },
   async GetUsers(pickoption) {
     let response = await Service.get("/getusers", pickoption);
     let data = response.data;
@@ -151,10 +163,10 @@ let Groups = {
     console.log(response);
     return true;
   },
-  async GetGroups(user) {
+  async GetGroups(user, groupname) {
     //funkcija iz Groups dohvaca $ne
 
-    let response = await Service.get("/groups", user);
+    let response = await Service.get("/groups", user, groupname);
     let data = response.data;
     data = data.map((group) => {
       return {

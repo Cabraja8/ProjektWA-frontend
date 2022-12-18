@@ -1,6 +1,6 @@
 <template>
   <div class="ControlPanel">
-    <div class="container-fluid my-4 py-4 col-lg-12 col-sm-6 col-md-12">
+    <div class="container-fluid my-4 py-4 col-lg-12 col-sm-12 col-md-12">
       <div class="container-fluid my-4 py-4 col">
         <h2 class="h2">Select your group</h2>
         <div class="border-top border-secondary w-50 mx-auto my-3"></div>
@@ -59,7 +59,7 @@
         />
       </div>
       <div class="container" v-if="this.Pick === ''">
-        <div class="container mt-5 my-4 py-4 my-4 w-80">
+        <div class="container mt-5 my-4 py-4 my-4 w-90">
           <div class="container">
             <div class="table-responsive">
               <table

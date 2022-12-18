@@ -13,9 +13,6 @@
           id="search"
           v-model="searchname"
         />
-        <button type="button rightbtn " class="btn bg-darkbg">
-          <i class="fa-solid fa-search"></i>
-        </button>
       </div>
     </div>
 
@@ -167,9 +164,9 @@ export default {
     async GetGroups() {
       this.GroupList = [];
       let user = JSON.parse(localStorage.getItem("user"));
-
+      let groupname = this.searchname;
       this.GroupList = await Groups.GetGroups({
-        params: { user },
+        params: { user, groupname },
       });
     },
 
