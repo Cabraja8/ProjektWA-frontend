@@ -4,7 +4,7 @@
       <h2 class="h2">Search Groups</h2>
       <div class="border-top border-secondary w-50 mx-auto my-3"></div>
       <div
-        class="container-fluid my-4 py-4 col-lg-12 col-sm-6 col-md-12 d-flex aligns-items-center justify-content-center"
+        class="container-fluid my-4 py-4 col-lg-12 col-sm-12 col-md-12 d-flex aligns-items-center justify-content-center"
       >
         <input
           type="group"

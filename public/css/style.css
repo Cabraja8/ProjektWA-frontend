@@ -262,6 +262,8 @@ ul.social li {
 }
 .w-40 {
   width: 40% !important;
+  text-align: center !important;
+  vertical-align: middle !important;
 }
 .w-80 {
   width: 80% !important;
@@ -395,4 +397,7 @@ input[type="group"]:focus {
 }
 .w-90 {
   width: 90% !important;
+}
+.blck {
+  border: #141212 5px solid;
 }

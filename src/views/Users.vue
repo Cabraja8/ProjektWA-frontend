@@ -201,7 +201,6 @@ export default {
     console.log(this.currentUsers);
   },
 
-  components: {},
   methods: {
     async ManageUser(users) {
       this.editUser = true;

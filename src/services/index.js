@@ -95,7 +95,25 @@ let Inbox = {
     return true;
   },
 };
-
+let Tasks = {
+  async CreateTask(TaskData, pickoption) {
+    let response = await Service.put("/CreateTask", TaskData, pickoption);
+    let desc = response.data;
+    return true;
+  },
+  async GetTaskList(pickoption) {
+    let response = await Service.get("/GetTaskList", pickoption);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        groupname: group.groupname,
+        tasks: group.tasks,
+      };
+    });
+    return data;
+  },
+};
 let Groups = {
   async EditProjectInformation(option, info) {
     let response = await Service.put("/EditProjectInformation", option, info);
@@ -278,4 +296,4 @@ let Auth = {
     },
   },
 };
-export { Service, Auth, Groups, Users, Inbox };
+export { Service, Auth, Groups, Users, Inbox, Tasks };
