@@ -37,7 +37,7 @@
                     <button
                       type="button rightbtn "
                       class="btn btn-sm btn-success"
-                      @click="EditProjectDescription"
+                      @click="EditProjectDescription(list.description)"
                     >
                       <i class="fa-solid fa-check"></i>
                     </button>
@@ -80,7 +80,7 @@
                     <button
                       type="button rightbtn "
                       class="btn btn-sm btn-success"
-                      @click="EditProjectInformation"
+                      @click="EditProjectInformation(list.information)"
                     >
                       <i class="fa-solid fa-check"></i>
                     </button>
@@ -133,17 +133,33 @@ export default {
       this.Information = "";
       this.editInfo = false;
     },
-    async EditProjectDescription() {
+    async EditProjectDescription(desc) {
       let option = JSON.parse(localStorage.getItem("pick"));
       let description = this.Description;
-
+      if (description === "") {
+        description = desc;
+      }
       await Groups.EditProjectDescription({ params: { option, description } });
+      this.CancelEditDescription();
+      this.CancelEditInformation();
+      this.colums = [];
+      this.rows = [];
+      this.Project = [];
+      this.GetProject();
     },
-    async EditProjectInformation() {
+    async EditProjectInformation(information) {
       let option = JSON.parse(localStorage.getItem("pick"));
       let info = this.Information;
-
+      if (info === "") {
+        info = information;
+      }
       await Groups.EditProjectInformation({ params: { option, info } });
+      this.CancelEditDescription();
+      this.CancelEditInformation();
+      this.colums = [];
+      this.rows = [];
+      this.Project = [];
+      this.GetProject();
     },
 
     async GetProject() {

@@ -41,8 +41,11 @@ export default {
     async GetAllUsers() {
       let user = JSON.parse(localStorage.getItem("user"));
       let currentUsers = JSON.parse(localStorage.getItem("currentusers"));
-
-      this.users = await Users.GetAllUsers({ params: { user, currentUsers } });
+      let inbox = JSON.parse(localStorage.getItem("inboxusers"));
+      console.log(inbox);
+      this.users = await Users.GetAllUsers({
+        params: { user, currentUsers, inbox },
+      });
     },
   },
   mounted() {

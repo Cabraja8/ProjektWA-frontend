@@ -80,7 +80,7 @@
           </div>
           <div class="mb-4 py-4 my-4" v-if="DeadlineData === 'Deadline'">
             <label for="password" class="form-label">Deadline:</label>
-            {{ this.DateInput }}
+
             <input type="date" v-model="DateInput" class="w-100" />
           </div>
           <button
@@ -194,13 +194,24 @@ export default {
           alert("fields cannot be empty");
         } else {
           await Tasks.CreateTask({ params: { TaskData, pickoption } });
+
+          this.TaskList = [];
+          this.TaskRow = [];
+          this.TaskColums = [];
+          this.CancelCreateTask();
+          this.GetTaskList();
         }
       }
     },
     async DeleteTask(taskname) {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
-      console.log(taskname);
+
       await Tasks.DeleteTask({ params: { taskname, pickoption } });
+      this.TaskList = [];
+      this.TaskRow = [];
+      this.TaskColums = [];
+
+      this.GetTaskList();
     },
 
     CreateClickTask() {

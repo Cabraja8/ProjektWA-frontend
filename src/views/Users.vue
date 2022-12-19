@@ -159,6 +159,13 @@
                 </tr>
               </tbody>
             </table>
+            <button
+              type="button rightbtn "
+              @click="BackToUsers"
+              class="btn bg-darkbg"
+            >
+              <i class="fa-solid fa-backward"></i> Back
+            </button>
           </div>
         </div>
       </div>
@@ -207,6 +214,10 @@ export default {
       this.role = users.role;
       this.currentNotes = users.notes;
     },
+    BackToUsers() {
+      this.editUser = false;
+    },
+
     CancelManageUser() {
       this.editUser = false;
     },
@@ -234,6 +245,12 @@ export default {
 
       try {
         await Users.EditUserRole({ params: { pickoption, roles, name } });
+        this.CancelEditRole();
+        this.GroupList = [];
+        this.rows = [];
+        this.colums = [];
+        this.GetUsers();
+        this.role = roles;
       } catch (e) {
         console.log(e);
       }
@@ -248,6 +265,12 @@ export default {
       }
       try {
         await Users.EditUserNotes({ params: { pickoption, notes, name } });
+        this.CancelEditNotes();
+        this.GroupList = [];
+        this.rows = [];
+        this.colums = [];
+        this.GetUsers();
+        this.currentNotes = notes;
       } catch (e) {
         console.log(e);
       }
@@ -255,8 +278,11 @@ export default {
     async KickUser(username) {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
 
-      console.log(username);
       await Users.KickUser({ params: { pickoption, username } });
+      this.GroupList = [];
+      this.rows = [];
+      this.colums = [];
+      this.GetUsers();
     },
 
     async GetUsers() {

@@ -14,7 +14,7 @@
           <tbody v-for="list in Group" :key="list.groupname">
             <tr>
               <td class="th-bg">Grop Name:</td>
-              <td class="td-bg">
+              <td class="td-bg" v-if="!editGroupName">
                 {{ list.groupname }}
               </td>
             </tr>
@@ -80,8 +80,18 @@
                   :placeholder="list.groupjoin"
                   v-model="GroupJoinType"
                 >
-                  <option value="Free Join">Free Join</option>
-                  <option value="Invite Only">Invite Only</option>
+                  <option
+                    v-if="list.groupjoin !== 'Free Join'"
+                    value="Free Join"
+                  >
+                    Free Join
+                  </option>
+                  <option
+                    v-if="list.groupjoin !== 'Invite Only'"
+                    value="Invite Only"
+                  >
+                    Invite Only
+                  </option>
                 </select>
                 <button
                   type="button rightbtn "
@@ -116,6 +126,7 @@ export default {
       GroupJoinType: "",
       Group: [],
       groupmap: [],
+      editGroupName: false,
       editCompanyName: false,
       editGroupJoinType: false,
     };
@@ -133,10 +144,13 @@ export default {
     },
     CancelChangeCompanyName() {
       this.editCompanyName = false;
+      this.CompanyName = "";
     },
     CancelChangeGroupJoin() {
       this.editGroupJoinType = false;
+      this.GroupJoinType = "";
     },
+
     async AcceptChangeCompanyName(companyname) {
       console.log(companyname);
       let pickoption = JSON.parse(localStorage.getItem("pick"));
@@ -145,6 +159,8 @@ export default {
         company = companyname;
       }
       await Groups.ChangeGroupCompanyName({ params: { pickoption, company } });
+      this.CancelChangeCompanyName();
+      this.GetGroupInfo();
     },
     async AcceptChangeGroupJoin(groupjointype) {
       console.log(groupjointype);
@@ -154,6 +170,8 @@ export default {
         groupjoin = groupjointype;
       }
       await Groups.ChangeGroupJoinType({ params: { pickoption, groupjoin } });
+      this.CancelChangeGroupJoin();
+      this.GetGroupInfo();
     },
   },
   mounted() {

@@ -27,8 +27,8 @@ Service.interceptors.response.use(
 );
 
 let Users = {
-  async GetAllUsers(user, currentusers) {
-    let response = await Service.get("/getAllUsers", user, currentusers);
+  async GetAllUsers(user, currentusers, inbox) {
+    let response = await Service.get("/getAllUsers", user, currentusers, inbox);
     let data = response.data;
     data = data.map((user) => {
       return {

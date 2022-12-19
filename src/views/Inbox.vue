@@ -1,7 +1,7 @@
 <template>
   <div class="Inbox">
     <div class="container w-90">
-      <div v-if="this.colums.length !== 0">
+      <div class="container" v-if="this.colums.length !== 0">
         <div class="table-responsive">
           <table class="table m-0 py-4 md-4 mx-auto bg-light shadowbox mx-auto">
             <thead class="thead-darkbg">
@@ -57,6 +57,7 @@ export default {
       InboxList: [],
       colums: [],
       rows: [],
+      inboxusers: [],
     };
   },
   mounted() {
@@ -73,8 +74,10 @@ export default {
           img: "",
         });
         this.DeclineJoin(username);
-        // this.InboxList = [];
-        // this.GetInbox();
+        this.InboxList = [];
+        this.rows = [];
+        this.colums = [];
+        this.GetInbox();
       } catch (e) {
         console.log(e);
       }
@@ -83,6 +86,10 @@ export default {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
 
       await Inbox.DeclineJoin({ params: { pickoption, username } });
+      this.InboxList = [];
+      this.rows = [];
+      this.colums = [];
+      this.GetInbox();
     },
 
     async GetInbox() {
@@ -96,6 +103,9 @@ export default {
 
       this.rows.forEach((el) => {
         el.forEach((user) => {
+          this.inboxusers.push(user.username);
+          localStorage.setItem("inboxusers", JSON.stringify(this.inboxusers));
+
           this.colums.push(user);
         });
       });

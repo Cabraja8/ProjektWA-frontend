@@ -1,5 +1,5 @@
 <template>
-  <div class="GroupPanel">
+  <div class="GroupPanel py-4 my-4">
     <div>
       <div class="table-responsive">
         <table
