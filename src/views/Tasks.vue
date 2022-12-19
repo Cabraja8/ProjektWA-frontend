@@ -1,12 +1,5 @@
 <template>
   <div class="Tasks">
-    <div class="container-fluid my-4 py-4 col">
-      <h2 class="h2">Task List</h2>
-      <div class="border-top border-secondary w-50 mx-auto my-3"></div>
-    </div>
-    <div class="container">
-      <TaskList v-for="list in TaskList" :key="list.id" :tasklist="TaskList" />
-    </div>
     <div class="container d-flex justify-content-center py-4 my-4">
       <div class="btn py-4 my-4" v-if="!CreateClick">
         <button type="button " @click="CreateClickTask" class="btn-gray">
@@ -109,12 +102,56 @@
         </form>
       </div>
     </div>
+    <div class="container-fluid my-4 py-4 col">
+      <h2 class="h2">Task List</h2>
+      <div class="border-top border-secondary w-50 mx-auto my-3"></div>
+    </div>
+    <div class="container" v-if="TaskColums.length === 0">
+      <h2>Currently there're no created Tasks</h2>
+    </div>
+    <div class="container" v-if="TaskColums.length !== 0">
+      <div class="table-responsive">
+        <table
+          class="table m-0 pd-4 py-4 md-4 mx-auto bg-light shadowbox mx-auto"
+        >
+          <thead class="thead-darkbg">
+            <tr>
+              <th>pic</th>
+              <th>Task Name:</th>
+              <th>Task Description</th>
+              <th>For User</th>
+              <th>Deadline</th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody v-for="list in TaskColums" :key="list.id">
+            <tr>
+              <td></td>
+              <td>{{ list.taskname }}</td>
+              <td>{{ list.taskDesc }}</td>
+              <td>{{ list.ForUser }}</td>
+              <td>{{ list.DeadLine }}</td>
+              <td>
+                <button
+                  type="button rightbtn "
+                  @click="DeleteTask(list.taskname)"
+                  class="btn btn-sm btn-danger"
+                >
+                  <i class="fa-solid fa-x"></i> Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { Users, Tasks } from "@/services";
-import TaskList from "@/components/TaskList.vue";
+
 export default {
   name: "Tasks",
   data() {
@@ -133,7 +170,7 @@ export default {
       TaskColums: [],
     };
   },
-  components: { TaskList },
+
   methods: {
     async CreateTask() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
@@ -160,6 +197,11 @@ export default {
         }
       }
     },
+    async DeleteTask(taskname) {
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+      console.log(taskname);
+      await Tasks.DeleteTask({ params: { taskname, pickoption } });
+    },
 
     CreateClickTask() {
       this.CreateClick = true;
@@ -175,6 +217,14 @@ export default {
     async GetTaskList() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
       this.TaskList = await Tasks.GetTaskList({ params: { pickoption } });
+      this.TaskList.forEach((element) => {
+        this.TaskRow.push(element.tasks);
+      });
+      this.TaskRow.forEach((element) => {
+        element.forEach((el) => {
+          this.TaskColums.push(el);
+        });
+      });
     },
     async GetUserList() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));

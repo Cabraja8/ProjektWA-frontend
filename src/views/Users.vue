@@ -198,7 +198,6 @@ export default {
 
   mounted() {
     this.GetUsers();
-    console.log(this.currentUsers);
   },
 
   methods: {
@@ -207,9 +206,6 @@ export default {
       this.username = users.username;
       this.role = users.role;
       this.currentNotes = users.notes;
-      console.log(users.username, "korisnik");
-      console.log(users.role, "role");
-      console.log(users.notes, "notes");
     },
     CancelManageUser() {
       this.editUser = false;

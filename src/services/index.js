@@ -96,6 +96,12 @@ let Inbox = {
   },
 };
 let Tasks = {
+  async DeleteTask(taskname, pickoption) {
+    let response = await Service.put("/DeleteTask", taskname, pickoption);
+    let desc = response.data;
+    return true;
+  },
+
   async CreateTask(TaskData, pickoption) {
     let response = await Service.put("/CreateTask", TaskData, pickoption);
     let desc = response.data;
