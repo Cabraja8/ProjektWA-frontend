@@ -61,6 +61,7 @@ export default {
     };
   },
   mounted() {
+    localStorage.removeItem("inboxusers");
     this.GetInbox();
   },
   methods: {
@@ -74,13 +75,13 @@ export default {
           img: "",
         });
         this.DeclineJoin(username);
-        this.InboxList = [];
-        this.rows = [];
-        this.colums = [];
-        this.GetInbox();
       } catch (e) {
         console.log(e);
       }
+      this.InboxList = [];
+      this.rows = [];
+      this.colums = [];
+      this.GetInbox();
     },
     async DeclineJoin(username) {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
@@ -94,6 +95,7 @@ export default {
 
     async GetInbox() {
       this.InboxList = [];
+
       let pickoption = JSON.parse(localStorage.getItem("pick"));
       this.InboxList = await Inbox.GetInbox({ params: { pickoption } });
 
@@ -103,9 +105,6 @@ export default {
 
       this.rows.forEach((el) => {
         el.forEach((user) => {
-          this.inboxusers.push(user.username);
-          localStorage.setItem("inboxusers", JSON.stringify(this.inboxusers));
-
           this.colums.push(user);
         });
       });

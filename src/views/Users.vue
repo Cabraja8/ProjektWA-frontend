@@ -204,6 +204,7 @@ export default {
   },
 
   mounted() {
+    localStorage.removeItem("currentusers");
     this.GetUsers();
   },
 
@@ -296,11 +297,6 @@ export default {
 
       this.rows.forEach((el) => {
         el.forEach((user) => {
-          this.currentUsers.push(user.username);
-          localStorage.setItem(
-            "currentusers",
-            JSON.stringify(this.currentUsers)
-          );
           this.colums.push(user);
         });
       });

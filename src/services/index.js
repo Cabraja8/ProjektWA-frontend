@@ -27,14 +27,31 @@ Service.interceptors.response.use(
 );
 
 let Users = {
-  async GetAllUsers(user, currentusers, inbox) {
-    let response = await Service.get("/getAllUsers", user, currentusers, inbox);
+  async GetUserList(pickoption, user) {
+    let response = await Service.get("/getUserList", pickoption, user);
     let data = response.data;
-    data = data.map((user) => {
+    data = data.map((group) => {
       return {
-        id: user._id,
-        username: user.username,
-        img: user.img,
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+
+  async GetAllUsers(user, notingroup) {
+    let response = await Service.get("/getAllUsers", user, notingroup);
+    let data = response.data;
+    data = data.map((username) => {
+      return {
+        id: username._id,
+        username: username.username,
+        img: username.img,
       };
     });
     return data;
@@ -121,6 +138,12 @@ let Tasks = {
   },
 };
 let Groups = {
+  async DeleteGroup(group) {
+    let response = await Service.delete("/DeleteGroup", group);
+    let groups = response.data;
+    return true;
+  },
+
   async EditProjectInformation(option, info) {
     let response = await Service.put("/EditProjectInformation", option, info);
     let desc = response.data;

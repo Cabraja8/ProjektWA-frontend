@@ -26,12 +26,12 @@
             class="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarResponsive"
+            data-target="#navbarResponsive1"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarResponsive">
+          <div class="collapse navbar-collapse" id="navbarResponsive1">
             <ul class="navbar-nav ml-auto">
               <span v-if="!auth.authenticated">
                 <li class="navbar-brand">

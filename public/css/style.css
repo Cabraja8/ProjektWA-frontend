@@ -402,3 +402,12 @@ input[type="group"]:focus {
 .blck {
   border: #141212 5px solid;
 }
+
+.card-size {
+  width: 350px;
+  border: #141212 5px solid !important;
+}
+
+.dangerc {
+  color: white !important;
+}

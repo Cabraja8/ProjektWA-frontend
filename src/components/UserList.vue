@@ -38,13 +38,17 @@ export default {
   name: "UserList",
   props: ["userlist"],
   data() {
-    return {};
+    return {
+      arr: ["Marin123", "Marko123"],
+    };
   },
 
   mounted() {},
 
   components: {},
   methods: {
+    async GetAllUsersInGroup() {},
+
     InviteUser(username) {
       console.log(username);
     },

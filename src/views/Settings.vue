@@ -7,6 +7,15 @@
         class="container container-blackbor row w-100 align items-center justify-content form-container formcon"
       ></div>
       <div class="col-sm-8 col-md-6 col-lg-4 rounded p-4 shadow pd-4 w-80-bord">
+        <div class="d-flex justify-content-end bg-darkbg py-2">
+          <button
+            type="button rightbtn "
+            @click="DeleteGroup"
+            class="btn btn-sm bg-danger dangerc"
+          >
+            <i class="fa-solid fa-x"></i> Delete Group
+          </button>
+        </div>
         <table class="table table-border">
           <thead>
             <tr></tr>
@@ -14,6 +23,7 @@
           <tbody v-for="list in Group" :key="list.groupname">
             <tr>
               <td class="th-bg">Grop Name:</td>
+
               <td class="td-bg" v-if="!editGroupName">
                 {{ list.groupname }}
               </td>
@@ -149,6 +159,18 @@ export default {
     CancelChangeGroupJoin() {
       this.editGroupJoinType = false;
       this.GroupJoinType = "";
+    },
+    async DeleteGroup() {
+      let group = JSON.parse(localStorage.getItem("pick"));
+      console.log(group);
+
+      try {
+        await Groups.DeleteGroup({ params: { group } });
+        this.$router.push({ name: "ControlPanel" });
+      } catch (e) {
+        console.log(e);
+        alert("error while deleting group");
+      }
     },
 
     async AcceptChangeCompanyName(companyname) {

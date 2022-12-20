@@ -35,16 +35,28 @@ export default {
   data() {
     return {
       users: [],
+      userlist: [],
+      rowuser: [],
     };
   },
   methods: {
     async GetAllUsers() {
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
       let user = JSON.parse(localStorage.getItem("user"));
-      let currentUsers = JSON.parse(localStorage.getItem("currentusers"));
-      let inbox = JSON.parse(localStorage.getItem("inboxusers"));
-      console.log(inbox);
+      let notingroup = [];
+      this.userlist = await Users.GetUserList({ params: { pickoption, user } });
+      this.userlist.forEach((element) => {
+        this.rowuser.push(element.users);
+        this.rowuser.push(element.inbox);
+      });
+      this.rowuser.forEach((element) => {
+        element.forEach((el) => {
+          notingroup.push(el.username);
+        });
+      });
+
       this.users = await Users.GetAllUsers({
-        params: { user, currentUsers, inbox },
+        params: { user, notingroup },
       });
     },
   },
