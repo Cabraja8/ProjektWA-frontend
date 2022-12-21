@@ -38,8 +38,8 @@
                     <span>
                       <li class="navbar-brand">
                         <router-link to="/ControlPanel/Tasks" class="nav-link">
-                          <i class="fa-regular fa-list-check"></i
-                          >Tasks</router-link
+                          <i class="fa-regular fa-list-check"></i>
+                          Tasks</router-link
                         >
                       </li>
                     </span>

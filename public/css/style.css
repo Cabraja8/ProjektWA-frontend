@@ -285,12 +285,26 @@ input[type="group"] {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 3px solid #141212 !important;
+  border: 3px solid #141212;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   outline: none;
 }
 input[type="group"]:focus {
+  border: 3px solid #514d4c;
+}
+
+input[class="error"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #141212 !important;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+input[class="error"]:focus {
   border: 3px solid #514d4c !important;
 }
 
@@ -410,4 +424,9 @@ input[type="group"]:focus {
 
 .dangerc {
   color: white !important;
+}
+
+.rederror {
+  color: rgb(224, 1, 1) !important;
+  font-size: 12px;
 }

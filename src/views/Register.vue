@@ -13,7 +13,7 @@
             <div class="mb-4 text_white">
               <label for="Email" class="form-label">Username::</label>
               <input
-                type="Username"
+                type="username"
                 v-model="username"
                 class="form-control"
                 id="username"
@@ -65,15 +65,18 @@
 
 <script>
 // @ is an alias to /src
-import { Auth } from "@/services";
+import { Auth, Users } from "@/services";
 export default {
   data() {
     return {
       username: "",
       Password: "",
       RepeatPassword: "",
+      users: [],
+      userlist: [],
     };
   },
+  mounted() {},
   methods: {
     async Register() {
       if (
@@ -82,8 +85,8 @@ export default {
         this.username !== ""
       ) {
         if (this.Password === this.RepeatPassword) {
-          alert("You've succesfully created your account");
           await Auth.Register(this.username, this.Password);
+          alert("You've succesfully created your account");
           this.$router.push({ name: "Login" });
         } else {
           alert("Passwords do NOT match");

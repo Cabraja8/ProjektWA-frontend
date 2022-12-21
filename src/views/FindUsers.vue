@@ -18,7 +18,6 @@
       </div>
     </div>
     <div class="container">
-      <h2 class="h2">UserList</h2>
       <div class="border-top border-secondary w-50 mx-auto my-3">
         <UserList v-for="list in users" :key="list.id" :userlist="list" />
       </div>

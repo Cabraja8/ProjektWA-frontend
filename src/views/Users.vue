@@ -204,7 +204,6 @@ export default {
   },
 
   mounted() {
-    localStorage.removeItem("currentusers");
     this.GetUsers();
   },
 

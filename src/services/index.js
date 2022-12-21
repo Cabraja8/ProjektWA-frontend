@@ -138,8 +138,8 @@ let Tasks = {
   },
 };
 let Groups = {
-  async DeleteGroup(group) {
-    let response = await Service.delete("/DeleteGroup", group);
+  async DeleteGroup(group, user) {
+    let response = await Service.delete("/DeleteGroup", group, user);
     let groups = response.data;
     return true;
   },
@@ -210,10 +210,27 @@ let Groups = {
     console.log(response);
     return true;
   },
-  async GetGroups(user, groupname) {
+
+  async GetAllGroups(user) {
+    let response = await Service.get("/GetAllGroups", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+  async GetGroups(user) {
     //funkcija iz Groups dohvaca $ne
 
-    let response = await Service.get("/groups", user, groupname);
+    let response = await Service.get("/groups", user);
     let data = response.data;
     data = data.map((group) => {
       return {

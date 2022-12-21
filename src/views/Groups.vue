@@ -47,14 +47,36 @@
                   </button>
                 </div>
                 <div class="btn float-right" v-if="clicked">
-                  <button
-                    @click="CreateGroup"
-                    type="button rightbtn "
-                    class="btn btn-success btn-bord"
-                  >
-                    <i class="fa-solid fa-check"></i> Create
-                  </button>
+                  <template v-if="!buttondisable && !exists">
+                    <button
+                      @click="CreateGroup"
+                      type="button rightbtn "
+                      class="btn btn-success btn-bord"
+                    >
+                      <i class="fa-solid fa-check"></i> Create
+                    </button>
+                  </template>
 
+                  <template v-if="buttondisable && !exists">
+                    <button
+                      @click="CreateGroup"
+                      type="button rightbtn "
+                      class="btn btn-success btn-bord"
+                      disabled
+                    >
+                      <i class="fa-solid fa-check"></i> Create
+                    </button>
+                  </template>
+                  <template v-if="exists && !buttondisable">
+                    <button
+                      @click="CreateGroup"
+                      type="button rightbtn "
+                      class="btn btn-success btn-bord"
+                      disabled
+                    >
+                      <i class="fa-solid fa-check"></i> Create
+                    </button>
+                  </template>
                   <button
                     @click="CancelCreateGroup"
                     type="button rightbtn "
@@ -79,9 +101,16 @@
                     type="group"
                     placeholder="Group Name"
                     class="form-control"
-                    id="search"
+                    id="groupname"
                     v-model="groupname"
+                    @input="CheckInGroup"
                   />
+                  <p v-if="buttondisable" class="rederror">
+                    This Group Name is taken!
+                  </p>
+                  <p v-if="exists" class="rederror">
+                    You've already created this group
+                  </p>
                 </div>
                 <div class="container py-4 col-lg-12 col-sm-6 col-md-6 w-50">
                   <p class="d-flex text-center">Your company name:</p>
@@ -154,19 +183,52 @@ export default {
       groupname: "",
       companyname: "",
       groupjoin: "",
+      ExistGroupList: [],
       GroupList: [],
+      grlist: [],
+      buttondisable: false,
+      exists: false,
     };
   },
   mounted() {
     this.GetGroups();
+    this.GetAllGroups();
   },
   methods: {
+    CheckInGroup() {
+      for (let i of this.ExistGroupList) {
+        if (this.groupname === i.groupname) {
+          this.exists = true;
+          break;
+        }
+        if (this.groupname !== i.groupname) {
+          this.exists = false;
+        }
+      }
+
+      for (let i of this.GroupList) {
+        if (this.groupname === i.groupname) {
+          this.buttondisable = true;
+          break;
+        }
+        if (this.groupname !== i.groupname) {
+          this.buttondisable = false;
+        }
+      }
+    },
+    async GetAllGroups() {
+      this.ExistGroupList = [];
+      let user = JSON.parse(localStorage.getItem("user"));
+
+      this.ExistGroupList = await Groups.GetAllGroups({ params: { user } });
+    },
     async GetGroups() {
       this.GroupList = [];
+
       let user = JSON.parse(localStorage.getItem("user"));
-      let groupname = this.searchname;
+
       this.GroupList = await Groups.GetGroups({
-        params: { user, groupname },
+        params: { user },
       });
     },
 
@@ -174,7 +236,12 @@ export default {
       this.clicked = true;
     },
     CancelCreateGroup() {
+      this.groupname = "";
+      this.companyname = "";
+      this.groupjoin = "";
+      this.buttondisable = false;
       this.clicked = false;
+      this.exists = false;
     },
     async CreateGroup() {
       if (
@@ -194,7 +261,6 @@ export default {
             description: "",
             information: "",
           },
-
           tasks: [],
           inbox: [],
           users: [],
@@ -213,4 +279,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.invalid {
+  border-color: red !important;
+}
+</style>

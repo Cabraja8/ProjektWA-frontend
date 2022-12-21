@@ -24,7 +24,11 @@
               class="form-control"
               id="text"
               v-model="TaskName"
+              @input="CheckTaskName"
             />
+            <p v-if="exists" class="rederror">
+              You've already created this task
+            </p>
           </div>
           <div class="mb-4">
             <label for="Task Desc" class="form-label">Task Description:</label>
@@ -83,14 +87,27 @@
 
             <input type="date" v-model="DateInput" class="w-100" />
           </div>
-          <button
-            type="button"
-            class="btn btn-sm btn-success w-25 mx-auto my-4 rounded"
-            @click="CreateTask"
-          >
-            <i class="fa-solid fa-check"></i>
-            Create
-          </button>
+          <template v-if="!exists">
+            <button
+              type="button"
+              class="btn btn-sm btn-success w-25 mx-auto my-4 rounded"
+              @click="CreateTask"
+            >
+              <i class="fa-solid fa-check"></i>
+              Create
+            </button>
+          </template>
+          <template v-if="exists">
+            <button
+              type="button"
+              class="btn btn-sm btn-success w-25 mx-auto my-4 rounded"
+              @click="CreateTask"
+              disabled
+            >
+              <i class="fa-solid fa-check"></i>
+              Create
+            </button>
+          </template>
           <button
             type="button"
             class="btn btn-sm btn-danger w-25 mx-auto my-4 rounded"
@@ -168,10 +185,26 @@ export default {
       TaskList: [],
       TaskRow: [],
       TaskColums: [],
+      exists: false,
     };
   },
 
   methods: {
+    CheckTaskName() {
+      console.log(this.TaskName);
+
+      for (let i of this.TaskList) {
+        for (let tasks of i.tasks) {
+          if (this.TaskName === tasks.taskname) {
+            this.exists = true;
+            break;
+          }
+          if (this.TaskName !== tasks.taskname) {
+            this.exists = false;
+          }
+        }
+      }
+    },
     async CreateTask() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
 
@@ -224,6 +257,7 @@ export default {
       this.ForUser = "";
       this.DeadlineData = "";
       this.DateInput = "";
+      this.exists = false;
     },
     async GetTaskList() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));

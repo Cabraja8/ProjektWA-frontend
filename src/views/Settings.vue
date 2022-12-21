@@ -162,11 +162,11 @@ export default {
     },
     async DeleteGroup() {
       let group = JSON.parse(localStorage.getItem("pick"));
-      console.log(group);
 
       try {
         await Groups.DeleteGroup({ params: { group } });
         this.$router.push({ name: "ControlPanel" });
+        this.$router.go();
       } catch (e) {
         console.log(e);
         alert("error while deleting group");
