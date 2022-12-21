@@ -31,7 +31,7 @@ Extra
   (min-width: 1200px) {
 } */
 
-/*-- Bootstrap Mobile Gutter Fix --*/
+/*-- Bootstrap Mobile getalluserswhoGutter Fix --*/
 .row,
 .container-fluid {
   margin-left: 0px !important;
@@ -50,7 +50,7 @@ Extra
 }
 
 .bg-darkbg {
-  background: #141212 !important;
+  background: #121214 !important;
   color: white !important;
 }
 .bg-darker {
@@ -429,4 +429,33 @@ input[class="error"]:focus {
 .rederror {
   color: rgb(224, 1, 1) !important;
   font-size: 12px;
+}
+.imgcontainer {
+  opacity: 1;
+  display: block;
+  background-color: #e0e0e0;
+}
+.imgcontainer:hover {
+  transition: 0.5s ease;
+
+  opacity: 0.5;
+
+  background-color: #121214;
+}
+
+.card-text {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  padding: 16px 32px;
+}
+.cap {
+  opacity: 1;
+}
+.cap:hover {
+  background: #000000 !important;
+  opacity: 0.7;
+}
+.card-img-top {
+  height: 300px;
+  width: 200px;
 }

@@ -51,11 +51,11 @@ let Users = {
       return {
         id: username._id,
         username: username.username,
-        img: username.img,
       };
     });
     return data;
   },
+
   async GetUsers(pickoption) {
     let response = await Service.get("/getusers", pickoption);
     let data = response.data;
@@ -138,8 +138,50 @@ let Tasks = {
   },
 };
 let Groups = {
-  async DeleteGroup(group, user) {
-    let response = await Service.delete("/DeleteGroup", group, user);
+  async GetJoinedGroups(user) {
+    let response = await Service.get("/GetJoinedGroups", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        tasks: group.tasks,
+        project: group.project,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+  async LeaveGroup(user, groupname) {
+    let response = await Service.put("/LeaveGroup", user, groupname);
+    let desc = response.data;
+    return true;
+  },
+  async GetYourGroup(user) {
+    let response = await Service.get("/GetYourGroup", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        tasks: group.tasks,
+        project: group.project,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+
+  async DeleteGroup(group) {
+    let response = await Service.delete("/DeleteGroup", group);
     let groups = response.data;
     return true;
   },
@@ -307,7 +349,7 @@ let Auth = {
     let user = {
       username: username,
       password: password,
-      img: "",
+
       dm: [],
     };
     let result = await Service.post("/users", user);

@@ -90,9 +90,9 @@
                       <div class="row">
                         <span v-if="auth.authenticated">
                           <li class="navbar-brand">
-                            <router-link to="/Profile" class="nav-link"
-                              ><i class="fa-solid fa-user"></i>
-                              Profile</router-link
+                            <router-link to="/List" class="nav-link"
+                              ><i class="fa-solid fa-list"></i>
+                              List</router-link
                             >
                           </li>
                         </span>

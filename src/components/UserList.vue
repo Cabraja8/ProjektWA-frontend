@@ -6,7 +6,6 @@
       >
         <thead class="thead-darkbg">
           <tr>
-            <th>Picture</th>
             <th>Username</th>
 
             <th>action</th>
@@ -14,7 +13,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>{{ userlist.img }}</td>
             <td>{{ userlist.username }}</td>
             <td>
               <button

@@ -296,6 +296,7 @@ export default {
 
       this.rows.forEach((el) => {
         el.forEach((user) => {
+          console.log(user);
           this.colums.push(user);
         });
       });

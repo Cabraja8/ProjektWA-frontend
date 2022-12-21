@@ -3,7 +3,9 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import Profile from "../views/Profile.vue";
+import List from "../views/List.vue";
+import JoinedGroups from "../views/JoinedGroups.vue";
+import Invites from "../views/Invites.vue";
 import Groups from "../views/Groups.vue";
 import DashBoard from "../views/Dashboard.vue";
 import ControlPanel from "../views/ControlPanel.vue";
@@ -14,6 +16,7 @@ import Tasks from "../views/Tasks.vue";
 import Project from "../views/Project.vue";
 import Inbox from "../views/Inbox.vue";
 import Settings from "../views/Settings.vue";
+import YourGroups from "../views/YourGroups";
 import { Auth } from "@/services";
 
 Vue.use(VueRouter);
@@ -35,9 +38,26 @@ const routes = [
     component: Register,
   },
   {
-    path: "/Profile",
-    name: "profile",
-    component: Profile,
+    path: "/List",
+    name: "List",
+    component: List,
+    children: [
+      {
+        path: "YourGroups",
+        name: "YourGroups",
+        component: YourGroups,
+      },
+      {
+        path: "JoinedGroups",
+        name: "JoinedGroups",
+        component: JoinedGroups,
+      },
+      {
+        path: "Invites",
+        name: "Invites",
+        component: Invites,
+      },
+    ],
   },
   {
     path: "/Groups",

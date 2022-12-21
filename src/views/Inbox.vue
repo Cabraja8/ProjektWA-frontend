@@ -6,14 +6,12 @@
           <table class="table m-0 py-4 md-4 mx-auto bg-light shadowbox mx-auto">
             <thead class="thead-darkbg">
               <tr>
-                <th>/</th>
                 <th>From</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="list in colums" :key="list.username">
-                <td>{{ list.picture }}</td>
                 <td class="td-width">{{ list.username }}</td>
 
                 <td class="td-width">
@@ -72,7 +70,6 @@ export default {
           groupname: groupname,
           username: username,
           notes: "",
-          img: "",
         });
         this.DeclineJoin(username);
       } catch (e) {

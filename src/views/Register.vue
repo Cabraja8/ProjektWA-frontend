@@ -73,7 +73,6 @@ export default {
       Password: "",
       RepeatPassword: "",
       users: [],
-      userlist: [],
     };
   },
   mounted() {},
@@ -85,9 +84,13 @@ export default {
         this.username !== ""
       ) {
         if (this.Password === this.RepeatPassword) {
-          await Auth.Register(this.username, this.Password);
-          alert("You've succesfully created your account");
-          this.$router.push({ name: "Login" });
+          try {
+            await Auth.Register(this.username, this.Password);
+            alert("You've succesfully created your account");
+            this.$router.push({ name: "Login" });
+          } catch (e) {
+            console.log("ERROR");
+          }
         } else {
           alert("Passwords do NOT match");
         }

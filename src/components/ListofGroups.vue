@@ -63,16 +63,13 @@ export default {
   },
   methods: {
     CheckInGroup() {
-      console.log(this.$props.listgroups, "prop");
       this.$props.listgroups.users.forEach((element) => {
         if (this.user.username === element.username) {
-          console.log(this.user.username);
           this.currentUsers = true;
         }
       });
       this.$props.listgroups.inbox.forEach((element) => {
         if (this.user.username === element.username) {
-          console.log(this.user.username);
           this.currentUsers = true;
         }
       });
@@ -85,7 +82,6 @@ export default {
           groupname: groupname,
           username: user.username,
           notes: "",
-          img: "",
         });
         setTimeout(() => {
           this.$router.push({ name: "DashBoard" });
