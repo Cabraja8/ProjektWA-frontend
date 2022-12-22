@@ -261,6 +261,7 @@ export default {
             description: "",
             information: "",
           },
+          completedTasks: [],
           tasks: [],
           inbox: [],
           users: [],

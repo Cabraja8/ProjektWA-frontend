@@ -48,7 +48,6 @@
               id="selectoption"
               v-model="ForUser"
             >
-              <option>All</option>
               <option v-for="list in colums" :key="list.id">
                 {{ list.username }}
               </option>
@@ -63,6 +62,7 @@
                 id="flexRadioDefault2"
                 value="No Deadline"
                 v-model="DeadlineData"
+                @click="changedeadline"
               />
               <label class="form-check-label" for="flexRadioDefault2">
                 No Deadline
@@ -133,7 +133,6 @@
         >
           <thead class="thead-darkbg">
             <tr>
-              <th>pic</th>
               <th>Task Name:</th>
               <th>Task Description</th>
               <th>For User</th>
@@ -144,7 +143,6 @@
           </thead>
           <tbody v-for="list in TaskColums" :key="list.id">
             <tr>
-              <td></td>
               <td>{{ list.taskname }}</td>
               <td>{{ list.taskDesc }}</td>
               <td>{{ list.ForUser }}</td>
@@ -186,13 +184,12 @@ export default {
       TaskRow: [],
       TaskColums: [],
       exists: false,
+      completedTasksList: [],
     };
   },
 
   methods: {
     CheckTaskName() {
-      console.log(this.TaskName);
-
       for (let i of this.TaskList) {
         for (let tasks of i.tasks) {
           if (this.TaskName === tasks.taskname) {
@@ -204,6 +201,23 @@ export default {
           }
         }
       }
+      for (let i of this.completedTasksList) {
+        for (let tasks of i.completedTasks) {
+          if (this.TaskName === tasks.taskname) {
+            this.exists = true;
+            break;
+          }
+          if (this.TaskName !== tasks.taskname) {
+            this.exists = false;
+          }
+        }
+      }
+    },
+    async GetCompletedTasks() {
+      let pickoption = JSON.parse(localStorage.getItem("pick"));
+      this.completedTasksList = await Tasks.GetCompletedTasks({
+        params: { pickoption },
+      });
     },
     async CreateTask() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
@@ -246,6 +260,9 @@ export default {
 
       this.GetTaskList();
     },
+    changedeadline() {
+      this.DateInput = "";
+    },
 
     CreateClickTask() {
       this.CreateClick = true;
@@ -287,6 +304,7 @@ export default {
   mounted() {
     this.GetUserList();
     this.GetTaskList();
+    this.GetCompletedTasks();
   },
 };
 </script>

@@ -50,6 +50,7 @@
           </div>
         </div>
       </div>
+
       <div class="container">
         <GroupPanel
           class="col"
@@ -57,29 +58,6 @@
           :key="listgroup.groupname"
           :groupPanel="listgroup"
         />
-      </div>
-      <div class="container" v-if="this.Pick === ''">
-        <div class="container mt-5 my-4 py-4 my-4 w-90">
-          <div class="container">
-            <div class="table-responsive">
-              <table
-                class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
-              >
-                <thead class="thead-darkbg">
-                  <br />
-                  <br />
-                </thead>
-                <tbody>
-                  <tr class="tr-cent">
-                    <th colspan="4" class="cent">
-                      You have to select a group in the options menu
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

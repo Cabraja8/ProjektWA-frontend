@@ -124,8 +124,46 @@ let Inbox = {
   },
 };
 let Tasks = {
+  async ClearCompletedTask(pickoption, taskname) {
+    let response = await Service.put(
+      "/ClearCompletedTask",
+      pickoption,
+      taskname
+    );
+    let userinfo = response.data;
+    return true;
+  },
+  async GetCompletedTasks(pickoption) {
+    let response = await Service.get("/GetCompletedTasks", pickoption);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        tasks: group.tasks,
+        project: group.project,
+        completedTasks: group.completedTasks,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+  async CompleteTask(TaskData, pickoption) {
+    let response = await Service.put("/CompleteTask", TaskData, pickoption);
+    let desc = response.data;
+    return true;
+  },
   async DeleteTask(taskname, pickoption) {
     let response = await Service.put("/DeleteTask", taskname, pickoption);
+    let desc = response.data;
+    return true;
+  },
+  async CompleteTask(taskData, pickoption) {
+    let response = await Service.put("/CompleteTask", taskData, pickoption);
     let desc = response.data;
     return true;
   },
@@ -149,6 +187,24 @@ let Tasks = {
   },
 };
 let Groups = {
+  async GetGroupsForMod(user, pickoption) {
+    let response = await Service.get("/GetGroupsForMod", user, pickoption);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        tasks: group.tasks,
+        project: group.project,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
   async JoinGroupInvite(groupname, user) {
     let response = await Service.put("/joingroupinvite", groupname, user);
     let groupnames = response.data;
@@ -328,6 +384,55 @@ let Groups = {
       return {
         id: group._id,
         admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+  async GetTaskUserList(user, groupname) {
+    let response = await Service.get("/GetTaskUserList", user, groupname);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        admin: group.admin,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        tasks: group.tasks,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+  async GetJoinedGroupName(option) {
+    let response = await Service.get("/GroupName/$(option)", option);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        username: group.username,
+        groupname: group.groupname,
+        companyname: group.companyname,
+        groupjoin: group.groupjoin,
+        inbox: group.inbox,
+        users: group.users,
+      };
+    });
+    return data;
+  },
+  async GetGroupPick(user) {
+    let response = await Service.get("/GetGroupPick", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        username: group.username,
         groupname: group.groupname,
         companyname: group.companyname,
         groupjoin: group.groupjoin,

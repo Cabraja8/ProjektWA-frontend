@@ -17,6 +17,9 @@ import Project from "../views/Project.vue";
 import Inbox from "../views/Inbox.vue";
 import Settings from "../views/Settings.vue";
 import YourGroups from "../views/YourGroups";
+import TaskList from "../views/TaskList.vue";
+import ProjectInfo from "../views/ProjectInfo.vue";
+import ModeratorList from "../views/ModeratorList.vue";
 import { Auth } from "@/services";
 
 Vue.use(VueRouter);
@@ -68,6 +71,23 @@ const routes = [
     path: "/DashBoard",
     name: "DashBoard",
     component: DashBoard,
+    children: [
+      {
+        path: "TaskList",
+        name: "TaskList",
+        component: TaskList,
+      },
+      {
+        path: "ProjectInfo",
+        name: "ProjectInfo",
+        component: ProjectInfo,
+      },
+      {
+        path: "ModeratorList",
+        name: "ModeratorList",
+        component: ModeratorList,
+      },
+    ],
   },
   {
     path: "/ControlPanel",

@@ -83,6 +83,7 @@ export default {
           username: user.username,
           notes: "",
         });
+        await Groups.DontJoin({ params: { user, groupname } });
         setTimeout(() => {
           this.$router.push({ name: "DashBoard" });
         }, 1000);
@@ -95,6 +96,7 @@ export default {
 
       try {
         await Groups.AskToJoinGroup({ params: { groupname, user } });
+        await Groups.DontJoin({ params: { user, groupname } });
         setTimeout(() => {
           this.$router.go();
         }, 500);

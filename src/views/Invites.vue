@@ -38,6 +38,9 @@
           </tbody>
         </table>
       </div>
+      <template v-if="listofinvites.length === 0">
+        <p>There're currently no invites from other Groups</p>
+      </template>
     </div>
   </div>
 </template>
@@ -69,8 +72,12 @@ export default {
     },
     async JoinGroupInvite(groupname) {
       let user = JSON.parse(localStorage.getItem("user"));
-      await Groups.JoinGroupInvite({ params: { user, groupname } });
-      this.DontJoin(groupname);
+      try {
+        await Groups.JoinGroupInvite({ params: { user, groupname } });
+        this.DontJoin(groupname);
+      } catch (e) {
+        console.log(e);
+      }
     },
     async GetAllInvites() {
       let user = JSON.parse(localStorage.getItem("user"));
