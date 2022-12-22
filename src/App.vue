@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <div class="top-bar bg-gray">
+      <div class="container-fluid top-bar bg-gray">
         <div class="col 12 text-right">
-          <p class="text_white">&copy; Project Manager 2023</p>
+          <p class="text_white" v-if="!user">&copy; Project Manager 2023</p>
+          <p class="text_white" v-if="user">Logged in as {{ user.username }}</p>
         </div>
       </div>
 
@@ -164,6 +165,7 @@ export default {
     return {
       store,
       auth: Auth.state,
+      user: JSON.parse(localStorage.getItem("user")),
     };
   },
 

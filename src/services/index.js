@@ -27,6 +27,16 @@ Service.interceptors.response.use(
 );
 
 let Users = {
+  async InviteUser(pickoption, admin, username) {
+    let response = await Service.put(
+      "/InviteUser",
+      pickoption,
+      admin,
+      username
+    );
+    let userinfo = response.data;
+    return true;
+  },
   async GetUserList(pickoption, user) {
     let response = await Service.get("/getUserList", pickoption, user);
     let data = response.data;
@@ -47,10 +57,11 @@ let Users = {
   async GetAllUsers(user, notingroup) {
     let response = await Service.get("/getAllUsers", user, notingroup);
     let data = response.data;
-    data = data.map((username) => {
+    data = data.map((group) => {
       return {
-        id: username._id,
-        username: username.username,
+        id: group._id,
+        username: group.username,
+        dm: group.dm,
       };
     });
     return data;
@@ -138,6 +149,28 @@ let Tasks = {
   },
 };
 let Groups = {
+  async JoinGroupInvite(groupname, user) {
+    let response = await Service.put("/joingroupinvite", groupname, user);
+    let groupnames = response.data;
+    return true;
+  },
+  async DontJoin(user, groupname) {
+    let response = await Service.put("/DontJoin", user, groupname);
+    let desc = response.data;
+    return true;
+  },
+  async GetInviteList(user) {
+    let response = await Service.get("/getInviteList", user);
+    let data = response.data;
+    data = data.map((group) => {
+      return {
+        id: group._id,
+        username: group.username,
+        dm: group.dm,
+      };
+    });
+    return data;
+  },
   async GetJoinedGroups(user) {
     let response = await Service.get("/GetJoinedGroups", user);
     let data = response.data;

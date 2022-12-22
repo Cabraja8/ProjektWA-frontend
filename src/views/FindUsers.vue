@@ -19,7 +19,12 @@
     </div>
     <div class="container">
       <div class="border-top border-secondary w-50 mx-auto my-3">
-        <UserList v-for="list in users" :key="list.id" :userlist="list" />
+        <UserList
+          v-for="list in users"
+          :key="list.id"
+          v-on:refresh="RefreshList"
+          :userlist="list"
+        />
       </div>
     </div>
   </div>
@@ -39,6 +44,13 @@ export default {
     };
   },
   methods: {
+    RefreshList() {
+      this.users = [];
+      this.userlist = [];
+      this.rowuser = [];
+      this.GetAllUsers();
+    },
+
     async GetAllUsers() {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
       let user = JSON.parse(localStorage.getItem("user"));
