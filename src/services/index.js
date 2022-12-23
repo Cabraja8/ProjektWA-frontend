@@ -54,8 +54,8 @@ let Users = {
     return data;
   },
 
-  async GetAllUsers(user, notingroup) {
-    let response = await Service.get("/getAllUsers", user, notingroup);
+  async GetAllUsers(user, notingroup, search) {
+    let response = await Service.get("/getAllUsers", user, notingroup, search);
     let data = response.data;
     data = data.map((group) => {
       return {
@@ -361,7 +361,7 @@ let Groups = {
   async GetGroups(user) {
     //funkcija iz Groups dohvaca $ne
 
-    let response = await Service.get("/groups", user);
+    let response = await Service.get("/groups", user, search);
     let data = response.data;
     data = data.map((group) => {
       return {
@@ -411,7 +411,7 @@ let Groups = {
     return data;
   },
   async GetJoinedGroupName(option) {
-    let response = await Service.get("/GroupName/$(option)", option);
+    let response = await Service.get("/GroupName", option);
     let data = response.data;
     data = data.map((group) => {
       return {
@@ -443,7 +443,7 @@ let Groups = {
     return data;
   },
   async GroupOption(pick) {
-    let response = await Service.get("/groupOption/${pick}", pick);
+    let response = await Service.get("/groupOption", pick);
     let data = response.data;
     data = data.map((group) => {
       return {

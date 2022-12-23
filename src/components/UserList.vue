@@ -8,7 +8,7 @@
           <tr>
             <th>Username</th>
 
-            <th>action</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

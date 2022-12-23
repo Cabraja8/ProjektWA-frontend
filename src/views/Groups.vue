@@ -12,6 +12,7 @@
           class="form-control w-40"
           id="search"
           v-model="searchname"
+          @input="GetGroups"
         />
       </div>
     </div>
@@ -224,11 +225,11 @@ export default {
     },
     async GetGroups() {
       this.GroupList = [];
-
-      let user = JSON.parse(localStorage.getItem("user"));
-
+      let search = this.searchname;
+      let User = JSON.parse(localStorage.getItem("user"));
+      let user = User.username;
       this.GroupList = await Groups.GetGroups({
-        params: { user },
+        params: { user, search },
       });
     },
 

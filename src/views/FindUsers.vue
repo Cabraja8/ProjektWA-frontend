@@ -11,10 +11,9 @@
           placeholder="Search Users"
           class="form-control w-40 d-flex aligns-items-center justify-content-center"
           id="search"
+          v-model="searchname"
+          @input="GetAllUsers"
         />
-        <button type="button rightbtn " class="btn bg-darkbg">
-          <i class="fa-solid fa-search"></i>
-        </button>
       </div>
     </div>
     <div class="container">
@@ -41,6 +40,7 @@ export default {
       users: [],
       userlist: [],
       rowuser: [],
+      searchname: "",
     };
   },
   methods: {
@@ -55,6 +55,8 @@ export default {
       let pickoption = JSON.parse(localStorage.getItem("pick"));
       let user = JSON.parse(localStorage.getItem("user"));
       let notingroup = [];
+      let search = this.searchname;
+      console.log(search);
       this.userlist = await Users.GetUserList({ params: { pickoption, user } });
       this.userlist.forEach((element) => {
         this.rowuser.push(element.users);
@@ -67,7 +69,7 @@ export default {
       });
 
       this.users = await Users.GetAllUsers({
-        params: { user, notingroup },
+        params: { user, notingroup, search },
       });
     },
   },

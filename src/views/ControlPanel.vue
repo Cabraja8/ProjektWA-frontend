@@ -60,6 +60,29 @@
         />
       </div>
     </div>
+    <div class="container" v-if="this.Pick === '' && GroupList.length > 0">
+      <div class="container mt-5 my-4 py-4 my-4 w-80">
+        <div class="container">
+          <div class="table-responsive">
+            <table
+              class="table m-0 pd-4 py-4 md-4 mx-auto table-hover shadowbox mx-auto"
+            >
+              <thead class="thead-darkbg">
+                <br />
+                <br />
+              </thead>
+              <tbody>
+                <tr class="tr-cent">
+                  <th colspan="4" class="cent">
+                    Select your group in the options menu
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -7,7 +7,6 @@
         >
           <thead class="thead-darkbg">
             <tr>
-              <th></th>
               <th>Username</th>
               <th>Role</th>
               <th>Notes</th>
@@ -17,7 +16,6 @@
           </thead>
           <tbody>
             <tr v-for="list in colums" :key="list.username">
-              <td>pic</td>
               <td>{{ list.username }}</td>
               <td>
                 {{ list.role }}
@@ -185,6 +183,7 @@ export default {
 
   data() {
     return {
+      searchname: "",
       clicked: false,
       clicked2: false,
       editUser: false,

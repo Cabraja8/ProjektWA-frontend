@@ -4,6 +4,9 @@
       <h2 class="h2">Select your group</h2>
       <div class="border-top border-secondary w-50 mx-auto my-3"></div>
     </div>
+    <div class="container py-4 my-4" v-if="pickoptions.length === 0">
+      <h3 class="h3">You need to be in a group to see the Group Dashboard</h3>
+    </div>
     <div class="container" v-if="pickoptions.length > 0">
       <div class="row">
         <div class="col-lg-6 py-4 my-4 mx-auto md-4">
@@ -30,7 +33,7 @@
         />
       </div>
     </div>
-    <div class="container" v-if="this.Pick === ''">
+    <div class="container" v-if="this.Pick === '' && pickoptions.length !== 0">
       <div class="container mt-5 my-4 py-4 my-4 w-80">
         <div class="container">
           <div class="table-responsive">
