@@ -14,17 +14,17 @@ Service.interceptors.request.use((request) => {
   }
   return request;
 });
-Service.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response.status == 401 || error.response.status == 403) {
-      Auth.logout();
-      $router.go();
-    }
-  }
-);
+// Service.interceptors.response.use(
+//   (response) => {
+//     return response;
+//   },
+//   (error) => {
+//     if (error.response.status == 401 || error.response.status == 403) {
+//       Auth.logout();
+//       $router.go();
+//     }
+//   }
+// );
 
 let Users = {
   async InviteUser(pickoption, admin, username) {
