@@ -4,27 +4,27 @@ let Service = axios.create({
   baseURL: "https://projectmanager-8yye.onrender.com/",
   timeout: 1000,
 });
-Service.interceptors.request.use((request) => {
-  let token = Auth.getToken();
-  if (!token) {
-    $router.go();
-    return;
-  } else {
-    request.headers["Authorization"] = "Bearer " + token;
-  }
-  return request;
-});
-// Service.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     if (error.response.status == 401 || error.response.status == 403) {
-//       Auth.logout();
-//       $router.go();
-//     }
+// Service.interceptors.request.use((request) => {
+//   let token = Auth.getToken();
+//   if (!token) {
+//     $router.go();
+//     return;
+//   } else {
+//     request.headers["Authorization"] = "Bearer " + token;
 //   }
-// );
+//   return request;
+// });
+Service.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status == 401 || error.response.status == 403) {
+      Auth.logout();
+      $router.go();
+    }
+  }
+);
 
 let Users = {
   async InviteUser(pickoption, admin, username) {
