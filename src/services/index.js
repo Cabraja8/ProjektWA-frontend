@@ -1,7 +1,7 @@
 import axios from "axios";
 import $router from "@/router";
 let Service = axios.create({
-  baseURL: "https://appprojectmanager.netlify.app/#/",
+  baseURL: "https://appprojectmanager.netlify.app/",
   timeout: 1000,
 });
 // Service.interceptors.request.use((request) => {
